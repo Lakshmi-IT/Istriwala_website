@@ -19,7 +19,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
             <h1 className="text-2xl font-bold text-primary">Isthri Wala</h1>
-            <span className="hidden sm:block text-muted-foreground">Professional Laundry Service</span>
+            {/* <span className="hidden sm:block text-muted-foreground">Professional Laundry Service</span> */}
           </Link>
           
           {/* Desktop Navigation */}
@@ -46,7 +46,7 @@ const Header = () => {
               </div>
               <div className="flex items-center space-x-2 text-sm">
                 <MapPin className="h-4 w-4 text-primary" />
-                <span>Mumbai, Maharashtra</span>
+                <span>Hyderabad, Telangana</span>
               </div>
             </div>
             

@@ -4,7 +4,7 @@ import heroImage from '../assets/hero-laundry.jpg';
 
 const Hero = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-hero min-h-[80vh] flex items-center">
+    <section className="relative overflow-hidden bg-gradient-hero min-h-[90vh] flex items-center">
       <div className="container mx-auto px-4 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-white space-y-6">
@@ -23,7 +23,7 @@ const Hero = () => {
               <HeroButton variant="hero">
                 Book Service Now
               </HeroButton>
-              <HeroButton variant="hero-outline">
+              <HeroButton variant="hero-outline" className='text-white border-white'>
                 Call +91 98765 43210
               </HeroButton>
             </div>
