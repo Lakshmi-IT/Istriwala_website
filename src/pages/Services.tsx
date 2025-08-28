@@ -47,7 +47,7 @@ const ServicesPage = () => {
 
   return (
     <div className="min-h-screen">
-      <Header />
+   
       
       {/* Services Hero Section */}
       <section className="py-20 bg-gradient-primary text-white">
@@ -113,7 +113,7 @@ const ServicesPage = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">How It Works</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Simple, convenient, and hassle-free laundry service in just three easy steps.
+              Simple, convenient, and hassle-free Ironing service in just three easy steps.
             </p>
           </div>
           
@@ -138,7 +138,7 @@ const ServicesPage = () => {
         </div>
       </section>
 
-      <Footer />
+      
     </div>
   );
 };

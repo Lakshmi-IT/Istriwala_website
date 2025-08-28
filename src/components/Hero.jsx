@@ -1,6 +1,8 @@
 import { HeroButton } from './ui/hero-button';
 import { CheckCircle, Clock, Shield } from 'lucide-react';
-import heroImage from '../assets/hero-laundry.jpg';
+// import heroImage from '../assets/hero-laundry.jpg';
+import heroImage from '../assets/istriwala.png';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -10,24 +12,28 @@ const Hero = () => {
           <div className="text-white space-y-6">
             <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
               Professional
-              <span className="block text-accent">Laundry Service</span>
+              <span className="block text-blue-950">ISTRIWALA</span>
               You Can Trust
             </h1>
-            
+
             <p className="text-xl text-blue-100 leading-relaxed">
-              Expert dry cleaning, washing, and ironing services for your precious clothes. 
-              We handle your garments with the utmost care and attention to detail.
+              IstriWala offers reliable doorstep pickup and delivery ironing services.
+              Our trained professionals ensure your clothes are neatly pressed and
+              delivered back to you on time — fresh, crisp, and ready to wear.
+              Convenience, quality, and care, right at your doorstep
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <HeroButton variant="hero">
-                Book Service Now
-              </HeroButton>
+              <Link to={"/placeorder"}>
+                <HeroButton variant="hero">
+                  Book Service Now
+                </HeroButton>
+              </Link>
               <HeroButton variant="hero-outline" className='text-white border-white'>
-                Call +91 98765 43210
+                Call +91 8125423366
               </HeroButton>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-6 pt-8">
               <div className="flex items-center space-x-2">
                 <CheckCircle className="h-5 w-5 text-accent" />
@@ -43,11 +49,11 @@ const Hero = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="relative">
-            <img 
-              src={heroImage} 
-              alt="Professional laundry service"
+            <img
+              src={heroImage}
+              alt="Professional Ironing service"
               className="rounded-lg shadow-elegant w-full h-auto"
             />
           </div>

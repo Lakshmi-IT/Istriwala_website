@@ -11,7 +11,7 @@ const WhyChooseUs = () => {
     {
       icon: Clock,
       title: "Fast Service",
-      description: "Quick turnaround time of 24-48 hours for all regular laundry services."
+      description: "Quick turnaround time of 24-48 hours for all regular Ironing services."
     },
     {
       icon: Shield,

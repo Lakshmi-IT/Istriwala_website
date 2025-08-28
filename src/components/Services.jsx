@@ -1,30 +1,47 @@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Droplets, Wind, Zap } from 'lucide-react';
-import ironingImage from '../assets/ironing-service.jpg';
-import dryCleaningImage from '../assets/dry-cleaning.jpg';
+import { Truck, Shield, Clock, DollarSign, ThumbsUp } from 'lucide-react';
+import pickupImage from '../assets/pickup-delivery.png';
+import hygieneImage from '../assets/hygiene-process.png';
+import deliveryImage from '../assets/on-time-delivery.png';
+import pricingImage from '../assets/affordable-pricing.png';
+import satisfactionImage from '../assets/customer-satisfaction.png';
 
 const Services = () => {
   const services = [
     {
-      icon: Droplets,
-      title: "Washing & Cleaning",
-      description: "Deep cleaning for all types of fabrics with premium detergents and fabric care.",
-      image: dryCleaningImage,
-      features: ["Stain removal", "Fabric softening", "Color protection", "Gentle cleaning"]
+      icon: Truck,
+      title: "Doorstep Pickup & Delivery",
+      description: "We pick up and deliver your clothes right at your doorstep for ultimate convenience.",
+      image: pickupImage,
+      features: ["Free pickup", "On-time delivery", "Hassle-free process", "Service at your doorstep"]
     },
     {
-      icon: Wind,
-      title: "Dry Cleaning",
-      description: "Professional dry cleaning for delicate and special garments that need expert care.",
-      image: dryCleaningImage,
-      features: ["Delicate fabrics", "Suit cleaning", "Formal wear", "Special materials"]
+      icon: Shield,
+      title: "Very Hygienic Process",
+      description: "All clothes are cleaned using hygienic, safe, and fabric-friendly methods.",
+      image: hygieneImage,
+      features: ["Sanitized equipment", "Safe detergents", "Fabric care", "Fresh results"]
     },
     {
-      icon: Zap,
-      title: "Ironing & Pressing",
-      description: "Crisp, professional ironing that makes your clothes look brand new every time.",
-      image: ironingImage,
-      features: ["Steam pressing", "Crease removal", "Professional finish", "Quick service"]
+      icon: Clock,
+      title: "On-Time Delivery",
+      description: "We value your time and ensure your clothes are ready exactly when promised.",
+      image: deliveryImage,
+      features: ["24-48 hour turnaround", "Express options", "Reliable service", "Timely updates"]
+    },
+    {
+      icon: DollarSign,
+      title: "Affordable Pricing",
+      description: "Enjoy premium Ironing services at budget-friendly prices with no hidden costs.",
+      image: pricingImage,
+      features: ["Transparent rates", "Multiple plans", "Value for money", "Flexible options"]
+    },
+    {
+      icon: ThumbsUp,
+      title: "Customer Satisfaction Guaranteed",
+      description: "We prioritize your satisfaction with every wash, press, and delivery.",
+      image: satisfactionImage,
+      features: ["Quality assurance", "Dedicated support", "Personalized care", "Trusted by customers"]
     }
   ];
 
@@ -34,7 +51,7 @@ const Services = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Our Services</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            We offer comprehensive laundry solutions for all your clothing needs
+            We provide reliable, hygienic, and affordable Ironing services tailored to your needs.
           </p>
         </div>
         
@@ -47,7 +64,7 @@ const Services = () => {
                   alt={service.title}
                   className="w-full h-48 object-cover group-hover:scale-105 transition-smooth"
                 />
-                <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-smooth"></div>
+                {/* <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-smooth"></div> */}
               </div>
               
               <CardHeader>

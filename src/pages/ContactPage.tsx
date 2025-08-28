@@ -37,14 +37,14 @@ const ContactPage = () => {
 
   return (
     <div className="min-h-screen">
-      <Header />
+     
       
       {/* Contact Hero Section */}
       <section className="py-20 bg-gradient-primary text-white">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">Contact Us</h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            Get in touch with Mumbai's most trusted laundry service. We're here to help 
+            Get in touch with Mumbai's most trusted Ironing service. We're here to help 
             with all your clothing care needs.
           </p>
         </div>
@@ -81,7 +81,7 @@ const ContactPage = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Quick answers to common questions about our laundry services
+              Quick answers to common questions about our Ironing services
             </p>
           </div>
           

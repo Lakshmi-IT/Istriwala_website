@@ -9,7 +9,7 @@ const Contact = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Ready to Get Started?</h2>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-            Contact us today for premium laundry services. We're here to make your life easier!
+            Contact us today for premium Ironing services. We're here to make your life easier!
           </p>
         </div>
         
@@ -24,7 +24,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold">Call Us</h4>
-                  <p className="text-blue-100">+91 98765 43210</p>
+                  <p className="text-blue-100">+91 8125423366</p>
                 </div>
               </div>
               

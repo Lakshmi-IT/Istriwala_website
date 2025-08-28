@@ -5,14 +5,14 @@ import Footer from '../components/Footer';
 const AboutUs = () => {
   return (
     <div className="min-h-screen">
-      <Header />
+    
       
       {/* About Us Hero Section */}
       <section className="py-20 bg-gradient-primary text-white">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">About Isthri Wala</h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            We are Mumbai's premier laundry service, committed to providing exceptional care for your garments 
+            We are Mumbai's premier Ironing service, committed to providing exceptional care for your garments 
             with professional expertise and convenient home pickup and delivery services.
           </p>
         </div>
@@ -44,13 +44,13 @@ const AboutUs = () => {
               <div className="bg-secondary/30 p-8 rounded-lg">
                 <h3 className="text-2xl font-bold mb-6 text-primary">Our Mission</h3>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  To provide convenient, reliable, and high-quality laundry services that give our customers 
+                  To provide convenient, reliable, and high-quality Ironing services that give our customers 
                   more time to focus on what matters most to them.
                 </p>
                 
                 <h3 className="text-2xl font-bold mb-6 text-primary">Our Vision</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  To become the most trusted laundry service provider in Mumbai, known for exceptional 
+                  To become the most trusted Ironing service provider in Mumbai, known for exceptional 
                   quality, reliability, and customer satisfaction.
                 </p>
               </div>
@@ -60,7 +60,7 @@ const AboutUs = () => {
       </section>
 
       <WhyChooseUs />
-      <Footer />
+    
     </div>
   );
 };
