@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Mail, Lock, User, Linkedin, Github, Phone } from "lucide-react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../utils/url";
 
@@ -122,9 +122,9 @@ export default function RegisterPage() {
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Already have an account?{" "}
-          <a href="/LoginPage" className="text-blue-600 font-semibold hover:underline">
+          <Link to={"/LoginPage"} className="text-blue-600 font-semibold hover:underline">
             Login
-          </a>
+          </Link>
         </p>
       </div>
     </div>
