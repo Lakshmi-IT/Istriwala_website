@@ -32,9 +32,9 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Our Services</h4>
             <ul className="space-y-2 text-gray-300">
-              <li><a href="#" className="hover:text-primary transition-smooth">Washing & Cleaning</a></li>
-              <li><a href="#" className="hover:text-primary transition-smooth">Dry Cleaning</a></li>
-              <li><a href="#" className="hover:text-primary transition-smooth">Ironing & Pressing</a></li>
+{/*               <li><a href="#" className="hover:text-primary transition-smooth">Washing & Cleaning</a></li> */}
+{/*               <li><a href="#" className="hover:text-primary transition-smooth">Dry Cleaning</a></li> */}
+              <li><a href="#" className="hover:text-primary transition-smooth">Ironing </a></li>
               <li><a href="#" className="hover:text-primary transition-smooth">Free Pickup & Delivery</a></li>
             </ul>
           </div>
