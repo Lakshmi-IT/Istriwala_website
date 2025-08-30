@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BASE_URL } from "../utils/url";
 
 export default function YourOrders() {
   const [orders, setOrders] = useState([]);
@@ -10,7 +11,7 @@ export default function YourOrders() {
 
     const fetchOrders = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/orders/my-orders", {
+        const res = await fetch(`${BASE_URL}api/orders/my-orders`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();

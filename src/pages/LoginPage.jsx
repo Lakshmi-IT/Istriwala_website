@@ -3,6 +3,7 @@ import { Mail, Lock, Linkedin, Github } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../utils/url";
 
 export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -13,33 +14,25 @@ export default function LoginPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  console.log("Login Data:", form);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Login Data:", form);
 
-  try {
-    const res = await axios.post(
-      "http://localhost:5000/api/user/login",
-      form
-    );
+    try {
+      const res = await axios.post(`${BASE_URL}api/user/login`, form);
 
-    if (res.data.token) {
-      localStorage.setItem("token", res.data.token);
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token);
+      }
+
+      toast.success(res.data.message || "✅ Logged in successfully!");
+      navigate("/"); // redirect to home
+      window.location.reload(); // 🔄 force refresh after redirect
+    } catch (err) {
+      console.error("Error:", err.response ? err.response.data : err.message);
+      toast.error(err.response?.data?.message || "❌ Login failed. Try again.");
     }
-
-    toast.success(res.data.message || "✅ Logged in successfully!");
-    navigate("/"); // redirect to home
-    window.location.reload(); // 🔄 force refresh after redirect
-  } catch (err) {
-    console.error("Error:", err.response ? err.response.data : err.message);
-    toast.error(
-      err.response?.data?.message || "❌ Login failed. Try again."
-    );
-  }
-};
-
-
-  
+  };
 
   return (
     <div className="min-h-[90vh] flex items-center justify-center bg-gradient-hero px-4">

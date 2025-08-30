@@ -1,18 +1,23 @@
+
+
+
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { User } from "lucide-react";
+import { User, MapPin } from "lucide-react";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../utils/url";
 
 const ProfilePage = () => {
     const [user, setUser] = useState(null);
     const [form, setForm] = useState({});
     const [isEditing, setIsEditing] = useState(false);
+    const [loadingLocation, setLoadingLocation] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (!token) return;
         axios
-            .get("http://localhost:5000/api/user/profile", {
+            .get(`${BASE_URL}api/user/profile`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then((res) => {
@@ -38,19 +43,73 @@ const ProfilePage = () => {
 
         try {
             const res = await axios.put(
-                "http://localhost:5000/api/user/update",
+                `${BASE_URL}api/user/update`,
                 formData,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setUser(res.data);
-            setIsEditing(false); // exit edit mode
+            setIsEditing(false);
             toast.success(res.data.message || "✅ Profile updated successfully!");
-
         } catch (err) {
+            toast.error(
+                "❌ Failed to update profile."
+            );
             console.error(err);
-            alert("❌ Failed to update profile");
+
         }
     };
+
+    // 🌍 Autofill location using GPS + Reverse Geocoding
+    const fillWithCurrentLocation = async () => {
+        if (!navigator.geolocation) {
+            toast.error("❌ Geolocation is not supported by your browser");
+            return;
+        }
+
+        setLoadingLocation(true);
+
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                const { latitude, longitude } = position.coords;
+
+                try {
+                    // Call backend proxy (not directly Nominatim → avoids CORS issues)
+                    const res = await axios.get(
+                        `${BASE_URL}api/user/reverse-geocode?lat=${latitude}&lon=${longitude}`
+                    );
+
+                    // Nominatim response → we only need `address`
+                    const addr = res.data.address || {};
+
+                    setForm((prev) => ({
+                        ...prev,
+                        hno: addr.house_number || "",
+                        street: addr.road || addr.neighbourhood || "",
+                        area: addr.suburb || addr.village || addr.town || addr.city || "",
+                        pincode: addr.postcode || "",
+                        state: addr.state || "",
+                        country: addr.country || "",
+                        lat:latitude || 0,
+                        lng:longitude || 0
+                    }));
+
+                    toast.success("📍 Location fetched successfully!");
+                } catch (error) {
+                    console.error("Frontend location error:", error.response?.data || error.message);
+                    toast.error("❌ Failed to fetch location details");
+                } finally {
+                    setLoadingLocation(false);
+                }
+            },
+            (error) => {
+                console.error("Geolocation error:", error);
+                toast.error("❌ Unable to fetch location from device");
+                setLoadingLocation(false);
+            },
+            { enableHighAccuracy: true, timeout: 10000 } // ⏳ 10s timeout for slow GPS
+        );
+    };
+
 
     if (!user) {
         return (
@@ -63,6 +122,7 @@ const ProfilePage = () => {
     return (
         <div className="container mx-auto px-4 py-10">
             <div className="max-w-3xl mx-auto bg-white shadow-md rounded-xl p-6">
+                {/* Header */}
                 <div className="flex justify-between items-center mb-6">
                     <h2 className="text-2xl font-bold flex items-center gap-2">
                         <User className="h-7 w-7 text-blue-600" /> Profile Settings
@@ -89,8 +149,9 @@ const ProfilePage = () => {
                     )}
                 </div>
 
+                {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    {/* User Name */}
+                    {/* User Name + Email */}
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <label className="block mb-1 font-medium">User Name</label>
@@ -120,20 +181,12 @@ const ProfilePage = () => {
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <label className="block mb-1 font-medium">Mobile</label>
-                            {/* <input
-                                type="text"
-                                name="mobile"
-                                value={form.mobile || ""}
-                                onChange={handleChange}
-                                disabled
-                                className="border p-2 rounded w-full cursor-not-allowed"
-                            /> */}
                             <input
                                 type="text"
                                 name="mobile"
                                 value={form.mobile || ""}
                                 onChange={(e) => {
-                                    const value = e.target.value.replace(/\D/g, ""); // allow only digits
+                                    const value = e.target.value.replace(/\D/g, "");
                                     if (value.length <= 10) {
                                         setForm({ ...form, mobile: value });
                                     }
@@ -146,7 +199,9 @@ const ProfilePage = () => {
                             />
                         </div>
                         <div>
-                            <label className="block mb-1 font-medium">Alternative Mobile</label>
+                            <label className="block mb-1 font-medium">
+                                Alternative Mobile
+                            </label>
                             <input
                                 type="text"
                                 name="alternativeMobile"
@@ -163,11 +218,25 @@ const ProfilePage = () => {
                                 maxLength={10}
                                 className="border p-2 rounded w-full disabled:cursor-not-allowed"
                             />
-
                         </div>
                     </div>
 
-                    {/* Address */}
+                    {/* Address Section with Location Button */}
+                    <div className="flex justify-between items-center">
+                        <h3 className="font-semibold text-lg">Address</h3>
+                        {isEditing && (
+                            <button
+                                type="button"
+                                onClick={fillWithCurrentLocation}
+                                className="flex items-center gap-2 bg-green-600 text-white px-3 py-2 rounded-lg hover:bg-green-700 transition"
+                            >
+                                <MapPin className="h-5 w-5" />
+                                {loadingLocation ? "Fetching..." : "Use My Location"}
+                            </button>
+                        )}
+                    </div>
+
+                    {/* House / Street */}
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <label className="block mb-1 font-medium">House / Door No.</label>
@@ -195,6 +264,7 @@ const ProfilePage = () => {
                         </div>
                     </div>
 
+                    {/* Area & Pincode */}
                     <div className="grid grid-cols-2 gap-4">
                         <div>
                             <label className="block mb-1 font-medium">Area</label>
@@ -229,6 +299,7 @@ const ProfilePage = () => {
                         </div>
                     </div>
 
+                    {/* State */}
                     <div>
                         <label className="block mb-1 font-medium">State</label>
                         <input
@@ -241,8 +312,32 @@ const ProfilePage = () => {
                             className="border p-2 rounded w-full disabled:cursor-not-allowed"
                         />
                     </div>
+                     <div>
+                        <label className="block mb-1 font-medium">Latitude</label>
+                        <input
+                            type="number"
+                            name="lat"
+                            value={form.lat || ""}
+                            onChange={handleChange}
+                            required
+                            disabled={!isEditing}
+                            className="border p-2 rounded w-full disabled:cursor-not-allowed"
+                        />
+                    </div>
+                     <div>
+                        <label className="block mb-1 font-medium">Longitude</label>
+                        <input
+                            type="number"
+                            name="lng"
+                            value={form.lng || ""}
+                            onChange={handleChange}
+                            required
+                            disabled={!isEditing}
+                            className="border p-2 rounded w-full disabled:cursor-not-allowed"
+                        />
+                    </div>
 
-                    {/* Save Button only when editing */}
+                    {/* Save Button */}
                     {isEditing && (
                         <button
                             type="submit"

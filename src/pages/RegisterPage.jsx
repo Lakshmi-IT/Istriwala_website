@@ -3,6 +3,7 @@ import { Mail, Lock, User, Linkedin, Github, Phone } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { BASE_URL } from "../utils/url";
 
 
 export default function RegisterPage() {
@@ -18,7 +19,7 @@ export default function RegisterPage() {
   e.preventDefault();
 
   try {
-    const res = await axios.post("http://localhost:5000/api/user/register", form);
+    const res = await axios.post(`${BASE_URL}api/user/register`, form);
 
     if (res.data.token) {
       localStorage.setItem("token", res.data.token);

@@ -8,7 +8,7 @@ import AboutUs from "./pages/AboutUs";
 import ServicesPage from "./pages/Services";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
-import LoginPage from "./pages/LoginPage";
+
 import RegisterPage from "./pages/RegisterPage";
 import Header from "./components/Header";
 
@@ -20,6 +20,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import YourOrders from "./pages/YourOrders";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import LoginPage from "./pages/LoginPage";
 
 
 const queryClient = new QueryClient();
@@ -29,10 +30,10 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-     
+
       <BrowserRouter>
         <Header />
-           <ScrollToTop />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<AboutUs />} />
@@ -57,7 +58,7 @@ const App = () => (
               </ProtectedRoute>
             }
           />
-           <Route
+          <Route
             path="/yourorders"
             element={
               <ProtectedRoute>

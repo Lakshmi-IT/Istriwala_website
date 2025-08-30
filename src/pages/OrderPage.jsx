@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { ShoppingCart, PlusCircle, Trash2, LocateIcon, MapPin, CreditCard } from "lucide-react";
+import { ShoppingCart, PlusCircle, Trash2, LocateIcon, MapPin, CreditCard, UserPlus } from "lucide-react";
 import laundry from "../assets/Laundry.png"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { BASE_URL } from "../utils/url"
 
 
 const categories = {
@@ -182,7 +183,7 @@ export default function OrderPage() {
         try {
             const token = localStorage.getItem("token");
 
-            const response = await fetch("http://localhost:5000/api/cart/add", {
+            const response = await fetch(`${BASE_URL}api/cart/add`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -214,39 +215,6 @@ export default function OrderPage() {
 
 
 
-    // const handleAddToCart = () => {
-    //     if (!selectedItem || qty < 1) return;
-
-    //     const itemData = categories[selectedCategory].find(
-    //         (i) => i.name === selectedItem
-    //     );
-    //     if (!itemData) return;
-
-    //     setCart((prev) => {
-    //         const existingIndex = prev.findIndex(
-    //             (i) => i.item === selectedItem && i.category === selectedCategory
-    //         );
-
-    //         let updatedCart;
-    //         if (existingIndex >= 0) {
-    //             updatedCart = [...prev];
-    //             updatedCart[existingIndex].qty += qty;
-    //         } else {
-    //             updatedCart = [
-    //                 ...prev,
-    //                 { category: selectedCategory, item: selectedItem, qty, price: itemData.price },
-    //             ];
-    //         }
-
-    //         // send updated cart to backend
-    //         sendCartToBackend(updatedCart);
-
-    //         return updatedCart;
-    //     });
-
-    //     setSelectedItem("");
-    //     setQty(1);
-    // };
 
 
     const handleAddToCart = () => {
@@ -312,7 +280,7 @@ export default function OrderPage() {
             console.log(itemId, qty, "itemId,qty ")
             const token = localStorage.getItem("token"); // get user token
 
-            const response = await fetch("http://localhost:5000/api/cart/update-item", {
+            const response = await fetch(`${BASE_URL}api/cart/update-item`, {
                 method: "PATCH", // assuming your backend route uses PUT
                 headers: {
                     "Content-Type": "application/json",
@@ -350,7 +318,7 @@ export default function OrderPage() {
         try {
             const token = localStorage.getItem("token");
 
-            const response = await fetch("http://localhost:5000/api/cart/remove-item", {
+            const response = await fetch(`${BASE_URL}api/cart/remove-item`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -366,7 +334,7 @@ export default function OrderPage() {
                 setFullcartDetails(data?.cart);
                 setTotalAmount(data?.cart?.totalPrice)
                 toast.success(data.message || "✅ Item removed from cart!");
-                console.log("Item removed from cart", data.cart);
+
                 return data.cart; // updated cart
             } else {
                 console.error("Error removing cart item:", data.error);
@@ -396,7 +364,7 @@ export default function OrderPage() {
         if (!token) return;
 
         axios
-            .get("http://localhost:5000/api/user/profile", {
+            .get(`${BASE_URL}api/user/profile`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then((res) => {
@@ -421,7 +389,7 @@ export default function OrderPage() {
         const token = localStorage.getItem("token");
         if (!token) return;
         axios
-            .get("http://localhost:5000/api/cart", {
+            .get(`${BASE_URL}api/cart`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then((res) => {
@@ -450,7 +418,7 @@ export default function OrderPage() {
 
         if (paymentMethod === "cod") {
             // Direct COD Order
-            await fetch("http://localhost:5000/api/orders/create", {
+            await fetch(`${BASE_URL}api/orders/create`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
                 //   body: JSON.stringify({ cartId, addressId, paymentMethod: "COD" }),
@@ -460,7 +428,9 @@ export default function OrderPage() {
                     paymentMethod: "COD"
                 }),
             });
-            alert("✅ COD Order placed!");
+            toast.success("✅ Order Placed successfully!");
+            navigate("/yourorders");
+
             return;
         }
 
@@ -468,7 +438,7 @@ export default function OrderPage() {
 
         if (paymentMethod === "razorpay") {
             // Step 1: Create Razorpay order
-            const res = await fetch("http://localhost:5000/api/orders/payment/order", {
+            const res = await fetch(`${BASE_URL}api/orders/payment/order`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
                 body: JSON.stringify({ cartId: fullcartDetails?._id, }),
@@ -484,7 +454,7 @@ export default function OrderPage() {
                 order_id: razorpayOrder.id,
                 handler: async function (response) {
                     // Step 3: Verify & create final order
-                    const verifyRes = await fetch("http://localhost:5000/api/orders/verify", {
+                    const verifyRes = await fetch(`${BASE_URL}api/orders/verify`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
                         body: JSON.stringify({
@@ -501,7 +471,12 @@ export default function OrderPage() {
                         toast.success("✅ Payment successful, order created!");
 
                     }
-                    else alert("❌ Payment verification failed!");
+                    else {
+                        toast.error(
+                            err.response?.data?.message || "❌  Payment verification failed! failed. Try again."
+                        );
+                    }
+
                 },
             };
             new window.Razorpay(options).open();
