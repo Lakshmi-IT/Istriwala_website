@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Mail, Lock, Linkedin, Github } from "lucide-react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../utils/url";
+
 
 export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -98,12 +99,12 @@ export default function LoginPage() {
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Don’t have an account?{" "}
-          <a
-            href="/RegisterPage"
+          <Link
+            to={"/RegisterPage"}
             className="text-blue-600 font-semibold hover:underline"
           >
             Register
-          </a>
+          </Link>
         </p>
       </div>
     </div>
