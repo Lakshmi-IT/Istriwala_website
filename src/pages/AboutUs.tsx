@@ -27,8 +27,8 @@ const AboutUs = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Founded with a simple mission to make laundry care effortless for busy families and professionals, 
-                  Isthri Wala has been serving Mumbai with dedication and excellence for years.
+                  Founded with a simple mission to make ironing care effortless for busy families and professionals, 
+                  IsthriWala has been serving currency nagar Vijayawada & Tadepalli Guntur with dedication and excellence for years.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   We understand that your clothes are more than just fabric – they represent your style, 
@@ -36,7 +36,7 @@ const AboutUs = () => {
                   same care and attention we'd give our own.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Our team of experienced professionals uses only the finest cleaning products and latest 
+                  Our team of experienced professionals uses only the finest iron machineries and latest 
                   equipment to ensure your clothes look their absolute best, every single time.
                 </p>
               </div>
@@ -50,7 +50,7 @@ const AboutUs = () => {
                 
                 <h3 className="text-2xl font-bold mb-6 text-primary">Our Vision</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  To become the most trusted Ironing service provider in Mumbai, known for exceptional 
+                  To become the most trusted Ironing service provider in currency nagar Vijayawada & Tadepalli Guntur , known for exceptional 
                   quality, reliability, and customer satisfaction.
                 </p>
               </div>

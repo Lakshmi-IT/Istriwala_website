@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { HeroButton } from './ui/hero-button';
 import { Phone, MapPin, Clock, Mail } from 'lucide-react';
@@ -12,11 +13,11 @@ const Contact = () => {
             Contact us today for premium Ironing services. We're here to make your life easier!
           </p>
         </div>
-        
+
         <div className="grid lg:grid-cols-2 gap-12">
           <div className="space-y-8">
             <h3 className="text-2xl font-semibold mb-6">Get in Touch</h3>
-            
+
             <div className="grid sm:grid-cols-2 gap-6">
               <div className="flex items-center space-x-3">
                 <div className="p-3 bg-white/10 rounded-lg">
@@ -27,7 +28,7 @@ const Contact = () => {
                   <p className="text-blue-100">+91 8125423366</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <div className="p-3 bg-white/10 rounded-lg">
                   <Mail className="h-6 w-6" />
@@ -37,17 +38,17 @@ const Contact = () => {
                   <p className="text-blue-100">info@isthriwala.com</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <div className="p-3 bg-white/10 rounded-lg">
                   <MapPin className="h-6 w-6" />
                 </div>
                 <div>
                   <h4 className="font-semibold">Service Area</h4>
-                  <p className="text-blue-100">Mumbai & Surrounding Areas</p>
+                  <p className="text-blue-100"> currency nagar Vijayawada & Tadepalli Guntur</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <div className="p-3 bg-white/10 rounded-lg">
                   <Clock className="h-6 w-6" />
@@ -58,17 +59,21 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
-              <HeroButton variant="hero" className="bg-accent hover:bg-accent/90">
-                Book Pickup Now
-              </HeroButton>
-              <HeroButton variant="hero-outline" className="border-white text-white hover:bg-white hover:text-primary">
-                Get Quote
-              </HeroButton>
+              <Link to={"/placeorder"}>
+                <HeroButton variant="hero" className="bg-accent hover:bg-accent/90">
+                  Book Service Now
+                </HeroButton>
+              </Link>
+              <Link to={"/contact"}>
+                <HeroButton variant="hero-outline" className="border-white text-white hover:bg-white hover:text-primary">
+                  Get Quote
+                </HeroButton>
+              </Link>
             </div>
           </div>
-          
+
           <Card className="bg-white/10 border-white/20 text-white">
             <CardHeader>
               <CardTitle className="text-xl">Service Process</CardTitle>
@@ -84,7 +89,7 @@ const Contact = () => {
                     <p className="text-blue-100 text-sm">Call us or book online for convenient pickup</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-3">
                   <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-sm font-bold text-accent-foreground">
                     2
@@ -94,7 +99,7 @@ const Contact = () => {
                     <p className="text-blue-100 text-sm">We clean your clothes with expert care</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-3">
                   <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-sm font-bold text-accent-foreground">
                     3

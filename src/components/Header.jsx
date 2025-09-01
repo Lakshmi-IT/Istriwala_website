@@ -23,7 +23,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [tokenPresent,setTokenPresent]=useState("")
+  const [tokenPresent, setTokenPresent] = useState("")
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -31,6 +31,9 @@ const Header = () => {
     { name: 'Home', path: '/', icon: <Home className="h-5 w-5" /> },
     { name: 'About Us', path: '/about', icon: <Info className="h-5 w-5" /> },
     { name: 'Services', path: '/services', icon: <Briefcase className="h-5 w-5" /> },
+   
+
+
 
 
   ];
@@ -41,7 +44,12 @@ const Header = () => {
       name: "Contact",
       path: "/contact",
       icon: <Mail className="h-5 w-5" />,
-    });
+    },
+     {
+      name: "Place Order",
+      path: "/placeorder",
+      icon: <ShoppingCart className="h-5 w-5" />,
+    })
   }
 
 

@@ -41,7 +41,7 @@ const WhyChooseUs = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Why Choose Isthri Wala?</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            We're committed to providing the best laundry experience with professional care and convenience
+            We're committed to providing the best ironing experience with professional care and convenience
           </p>
         </div>
         

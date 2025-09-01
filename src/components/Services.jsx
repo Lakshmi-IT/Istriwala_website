@@ -1,10 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Truck, Shield, Clock, DollarSign, ThumbsUp } from 'lucide-react';
+import { Truck, Shield, Clock, DollarSign, ThumbsUp, IndianRupee } from 'lucide-react';
 import pickupImage from '../assets/pickup-delivery.png';
-import hygieneImage from '../assets/hygiene-process.png';
+import hygieneImage from '../assets/hygiene-process.jpeg';
 import deliveryImage from '../assets/on-time-delivery.png';
 import pricingImage from '../assets/affordable-pricing.png';
-import satisfactionImage from '../assets/customer-satisfaction.png';
+import satisfactionImage from '../assets/customer-satisfaction.jpeg';
 
 const Services = () => {
   const services = [
@@ -20,7 +20,7 @@ const Services = () => {
       title: "Very Hygienic Process",
       description: "All clothes are cleaned using hygienic, safe, and fabric-friendly methods.",
       image: hygieneImage,
-      features: ["Sanitized equipment", "Safe detergents", "Fabric care", "Fresh results"]
+      features: ["Sanitized equipment", "Fabric care", "Fresh results"]
     },
     {
       icon: Clock,
@@ -30,7 +30,7 @@ const Services = () => {
       features: ["24-48 hour turnaround", "Express options", "Reliable service", "Timely updates"]
     },
     {
-      icon: DollarSign,
+      icon: IndianRupee,
       title: "Affordable Pricing",
       description: "Enjoy premium Ironing services at budget-friendly prices with no hidden costs.",
       image: pricingImage,
@@ -39,7 +39,7 @@ const Services = () => {
     {
       icon: ThumbsUp,
       title: "Customer Satisfaction Guaranteed",
-      description: "We prioritize your satisfaction with every wash, press, and delivery.",
+      description: "We prioritize your satisfaction with every Ironing, Pickup, and delivery.",
       image: satisfactionImage,
       features: ["Quality assurance", "Dedicated support", "Personalized care", "Trusted by customers"]
     }
@@ -62,7 +62,7 @@ const Services = () => {
                 <img 
                   src={service.image} 
                   alt={service.title}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-smooth"
+                  className="w-full h-64 object-cover group-hover:scale-105 transition-smooth"
                 />
                 {/* <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/10 transition-smooth"></div> */}
               </div>

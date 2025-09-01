@@ -63,7 +63,7 @@ const ServicesPage = () => {
       <Services />
 
       {/* Pricing Section */}
-      <section className="py-20 bg-background">
+      {/* <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Service Pricing</h2>
@@ -105,7 +105,7 @@ const ServicesPage = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Process Section */}
       <section className="py-20 bg-secondary/30">

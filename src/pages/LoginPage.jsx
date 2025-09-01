@@ -78,7 +78,7 @@ export default function LoginPage() {
         </form>
 
         {/* Social logins */}
-        <div className="mt-6">
+        {/* <div className="mt-6">
           <p className="text-center text-gray-500 mb-3">Or continue with</p>
           <div className="flex justify-center gap-4">
             <button className="p-2 border rounded-lg hover:bg-gray-100">
@@ -95,7 +95,7 @@ export default function LoginPage() {
               <Github size={24} />
             </button>
           </div>
-        </div>
+        </div> */}
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Don’t have an account?{" "}

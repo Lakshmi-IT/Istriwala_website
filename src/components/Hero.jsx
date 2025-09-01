@@ -17,7 +17,7 @@ const Hero = () => {
             </h1>
 
             <p className="text-xl text-blue-100 leading-relaxed">
-              IstriWala offers reliable doorstep pickup and delivery ironing services.
+              IstriWala offers reliable doorstep pickup and delivery,ironing and hygienic services.
               Our trained professionals ensure your clothes are neatly pressed and
               delivered back to you on time — fresh, crisp, and ready to wear.
               Convenience, quality, and care, right at your doorstep
