@@ -208,8 +208,8 @@ const Header = () => {
               </Link>
 
               <Link
-                to="/help"
-                className={`flex flex-col items-center text-xs ${location.pathname === "/help" ? "text-blue-600 font-semibold" : "text-gray-500"
+                to="/contact"
+                className={`flex flex-col items-center text-xs ${location.pathname === "/contact" ? "text-blue-600 font-semibold" : "text-gray-500"
                   }`}
               >
                 <Info className="h-5 w-5" />
