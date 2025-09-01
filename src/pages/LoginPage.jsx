@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { Mail, Lock, Linkedin, Github } from "lucide-react";
+import { Mail, Lock } from "lucide-react";
 import axios from "axios";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../utils/url";
 
-
 export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false); // 🔄 loading state
 
   const navigate = useNavigate();
 
@@ -20,6 +20,7 @@ export default function LoginPage() {
     console.log("Login Data:", form);
 
     try {
+      setLoading(true); // start loader
       const res = await axios.post(`${BASE_URL}api/user/login`, form);
 
       if (res.data.token) {
@@ -27,11 +28,13 @@ export default function LoginPage() {
       }
 
       toast.success(res.data.message || "✅ Logged in successfully!");
-      navigate("/"); // redirect to home
-      window.location.reload(); // 🔄 force refresh after redirect
+      navigate("/"); 
+      window.location.reload();
     } catch (err) {
       console.error("Error:", err.response ? err.response.data : err.message);
       toast.error(err.response?.data?.message || "❌ Login failed. Try again.");
+    } finally {
+      setLoading(false); // stop loader
     }
   };
 
@@ -71,31 +74,23 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition"
+            disabled={loading}
+            className={`w-full py-2 rounded-lg font-semibold transition ${
+              loading
+                ? "bg-blue-400 cursor-not-allowed text-white"
+                : "bg-blue-600 hover:bg-blue-700 text-white"
+            }`}
           >
-            Login
+            {loading ? (
+              <div className="flex justify-center items-center gap-2">
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                Logging in...
+              </div>
+            ) : (
+              "Login"
+            )}
           </button>
         </form>
-
-        {/* Social logins */}
-        {/* <div className="mt-6">
-          <p className="text-center text-gray-500 mb-3">Or continue with</p>
-          <div className="flex justify-center gap-4">
-            <button className="p-2 border rounded-lg hover:bg-gray-100">
-              <img
-                src="https://www.svgrepo.com/show/355037/google.svg"
-                alt="Google"
-                className="h-6 w-6"
-              />
-            </button>
-            <button className="p-2 border rounded-lg hover:bg-gray-100">
-              <Linkedin size={24} className="text-blue-600" />
-            </button>
-            <button className="p-2 border rounded-lg hover:bg-gray-100">
-              <Github size={24} />
-            </button>
-          </div>
-        </div> */}
 
         <p className="text-center text-sm text-gray-500 mt-6">
           Don’t have an account?{" "}

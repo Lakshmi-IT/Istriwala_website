@@ -28,7 +28,12 @@ export default function YourOrders() {
     fetchOrders();
   }, []);
 
-  if (loading) return <p className="p-6">Loading orders...</p>;
+if (loading)
+  return (
+    <div className="flex justify-center items-center p-6">
+      <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
 
   return (
     <div className="p-6 max-w-4xl mx-auto">

@@ -89,8 +89,8 @@ const ProfilePage = () => {
                         pincode: addr.postcode || "",
                         state: addr.state || "",
                         country: addr.country || "",
-                        lat:latitude || 0,
-                        lng:longitude || 0
+                        lat: latitude || 0,
+                        lng: longitude || 0
                     }));
 
                     toast.success("📍 Location fetched successfully!");
@@ -113,8 +113,8 @@ const ProfilePage = () => {
 
     if (!user) {
         return (
-            <div className="flex items-center justify-center min-h-screen text-gray-600">
-                Loading profile...
+            <div className="flex justify-center items-center p-6">
+                <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
             </div>
         );
     }
@@ -312,7 +312,7 @@ const ProfilePage = () => {
                             className="border p-2 rounded w-full disabled:cursor-not-allowed"
                         />
                     </div>
-                     <div>
+                    <div>
                         <label className="block mb-1 font-medium">Latitude</label>
                         <input
                             type="number"
@@ -324,7 +324,7 @@ const ProfilePage = () => {
                             className="border p-2 rounded w-full disabled:cursor-not-allowed"
                         />
                     </div>
-                     <div>
+                    <div>
                         <label className="block mb-1 font-medium">Longitude</label>
                         <input
                             type="number"
