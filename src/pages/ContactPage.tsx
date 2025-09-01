@@ -57,7 +57,7 @@ const ContactPage = () => {
             </p>
           </div>
           
-         <div className="flex justify-center">
+         <div className="flex justify-center items-center">
   <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl w-full place-items-center">
     {serviceAreas.map((area, index) => (
       <Card
