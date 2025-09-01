@@ -1,7 +1,7 @@
 import { HeroButton } from './ui/hero-button';
 import { CheckCircle, Clock, Shield } from 'lucide-react';
 // import heroImage from '../assets/hero-laundry.jpg';
-import heroImage from '../assets/istriwala.png';
+import heroImage from '../assets/CoverImage 2.png';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
