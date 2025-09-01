@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter, Phone, Mail, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Phone, Mail, MapPin, Youtube } from 'lucide-react';
 import logo from "../assets/logo.png"
 import { Link } from 'react-router-dom';
 
@@ -17,14 +17,17 @@ const Footer = () => {
               Your trusted partner for professional Ironing services. We handle your clothes with care and deliver excellence every time.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-primary transition-smooth">
+              <a href="https://www.facebook.com/profile.php?id=61579776703379" className="text-gray-300 hover:text-primary transition-smooth">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-300 hover:text-primary transition-smooth">
+              <a href="https://www.instagram.com/_istriwala_" className="text-gray-300 hover:text-primary transition-smooth">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="text-gray-300 hover:text-primary transition-smooth">
+              <a href="https://x.com/ISTRIWALA25552" className="text-gray-300 hover:text-primary transition-smooth">
                 <Twitter className="h-5 w-5" />
+              </a>
+              <a href="https://www.youtube.com/channel/UChOgPyPBYPtPPugCaW2skVg" className="text-gray-300 hover:text-primary transition-smooth">
+                <Youtube className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -53,8 +56,15 @@ const Footer = () => {
               <div className="flex items-start space-x-2">
                 <MapPin className="h-4 w-4 mt-1" />
                 <span>
-                  Currency Nagar, Vijayawada <br />
-                  & Tadepalli, Guntur
+                  Currency Nagar, Vijayawada
+
+                </span>
+              </div>
+              <div className="flex items-start space-x-2">
+                <MapPin className="h-4 w-4 mt-1" />
+                <span>
+
+                  Tadepalli, Guntur
                 </span>
               </div>
               <p className="text-sm">

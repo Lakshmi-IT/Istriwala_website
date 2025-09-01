@@ -1,9 +1,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Truck, Shield, Clock, DollarSign, ThumbsUp, IndianRupee } from 'lucide-react';
-import pickupImage from '../assets/pickup-delivery.png';
+import pickupImage from '../assets/pickupanddelivery.jpeg';
 import hygieneImage from '../assets/hygiene-process.jpeg';
 import deliveryImage from '../assets/on-time-delivery.png';
-import pricingImage from '../assets/affordable-pricing.png';
+import pricingImage from '../assets/affordable.jpeg';
 import satisfactionImage from '../assets/customer-satisfaction.jpeg';
 
 const Services = () => {

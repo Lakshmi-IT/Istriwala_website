@@ -45,7 +45,16 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold">Service Area</h4>
-                  <p className="text-blue-100"> currency nagar Vijayawada & Tadepalli Guntur</p>
+                  <p className="text-blue-100"> Currency Nagar Vijayawada</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <div className="p-3 bg-white/10 rounded-lg">
+                  <MapPin className="h-6 w-6" />
+                </div>
+                <div>
+                  <h4 className="font-semibold">Service Area</h4>
+                  <p className="text-blue-100">Tadepalli Guntur</p>
                 </div>
               </div>
 

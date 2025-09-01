@@ -98,7 +98,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img src={logo} alt="logo" className="w-[50px] h-[50px]" />
-            <h1 className="lg:text-3xl font-bold text-blue-950">ISTRIWALA</h1>
+            <h1 className="lg:text-3xl text-xl font-bold text-blue-950">ISTRIWALA</h1>
           </Link>
 
           {/* Desktop Navigation */}
