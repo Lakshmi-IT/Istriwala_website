@@ -169,7 +169,7 @@ export default function OrderPage() {
     );
 
 
-    const [paymentMethod, setPaymentMethod] = useState("razorpay");
+    const [paymentMethod, setPaymentMethod] = useState("cod");
 
     const navigate = useNavigate();
 
@@ -497,7 +497,21 @@ export default function OrderPage() {
         !address[0].details ||
         address[0].details.replace(/undefined|,|-|\s/g, "") === "";
 
-    console.log(cartData, "cartData")
+    // console.log(cartData, "cartData")
+
+    const totalPrice = cartData?.reduce((acc, curr) => acc + (curr?.price * curr?.qty), 0);
+
+    // console.log("Total Price:", totalPrice);
+
+    let errorMessage = "";
+    if (cartData?.length === 0) {
+        errorMessage = "Your cart is empty. Please add items before placing an order.";
+    } else if (isInvalidAddress) {
+        errorMessage = "Please select a valid delivery address.";
+    } else if (totalPrice < 200) {
+        errorMessage = "Minimum order value is ₹200.";
+    }
+
 
 
 
@@ -720,7 +734,7 @@ export default function OrderPage() {
                 </h2>
 
                 <div className="space-y-3">
-                    <label className="flex items-center p-3 border rounded-lg cursor-pointer">
+                    {/* <label className="flex items-center p-3 border rounded-lg cursor-pointer">
                         <input
                             type="radio"
                             name="payment"
@@ -730,7 +744,7 @@ export default function OrderPage() {
                             className="mr-3"
                         />
                         Razorpay (UPI, Card, NetBanking)
-                    </label>
+                    </label> */}
 
                     <label className="flex items-center p-3 border rounded-lg cursor-pointer">
                         <input
@@ -752,19 +766,22 @@ export default function OrderPage() {
 
 
                 {/* // then render */}
-                <button
-                    onClick={handlePlaceOrder}
-                    disabled={cartData?.length === 0 || isInvalidAddress}
-                    className={`bg-green-600 text-white px-4 py-2 rounded mt-6 w-full font-semibold ${cartData?.length === 0 || isInvalidAddress
-                        ? "opacity-50 cursor-not-allowed"
-                        : ""
-                        }`}
-                >
-                    Place Order
-                </button>
+                {console.log(cartData, "cartData")}
+                <div>
+                    <button
+                        onClick={handlePlaceOrder}
+                        disabled={!!errorMessage}
+                        className={`bg-green-600 text-white px-4 py-2 rounded mt-6 w-full font-semibold ${errorMessage ? "opacity-50 cursor-not-allowed" : ""
+                            }`}
+                    >
+                        Place Order
+                    </button>
 
-
-
+                    {/* Error message below button */}
+                    {errorMessage && (
+                        <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
+                    )}
+                </div>
 
             </div>
         </div>
