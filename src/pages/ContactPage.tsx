@@ -6,14 +6,9 @@ import { MapPin, Clock, Users, Award } from 'lucide-react';
 
 const ContactPage = () => {
   const serviceAreas = [
-    "Andheri East & West",
-    "Bandra East & West", 
-    "Juhu & Versova",
-    "Powai & Hiranandani",
-    "Goregaon East & West",
-    "Malad East & West",
-    "Borivali East & West",
-    "Kandivali East & West"
+    "currency nagar Vijayawada",
+    "Tadepalli Guntur "
+
   ];
 
   const faqs = [
