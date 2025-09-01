@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter, Phone, Mail } from 'lucide-react';
+import { Facebook, Instagram, Twitter, Phone, Mail, MapPin } from 'lucide-react';
 import logo from "../assets/logo.png"
 import { Link } from 'react-router-dom';
 
@@ -7,6 +7,7 @@ const Footer = () => {
     <footer className="bg-foreground text-background py-12 lg:mb-0 mb-5">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-8">
+          {/* Logo + About */}
           <div>
             <Link to="/" className="flex items-center space-x-2">
               <img src={logo} alt='logo' title='logo of website' className='w-[50px] h-[50px]' />
@@ -28,14 +29,16 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* Services */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Our Services</h4>
             <ul className="space-y-2 text-gray-300">
-              <li><a href="#" className="hover:text-primary transition-smooth">Ironing </a></li>
+              <li><a href="#" className="hover:text-primary transition-smooth">Ironing</a></li>
               <li><a href="#" className="hover:text-primary transition-smooth">Free Pickup & Delivery</a></li>
             </ul>
           </div>
 
+          {/* Contact Info */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
             <div className="space-y-3 text-gray-300">
@@ -47,6 +50,13 @@ const Footer = () => {
                 <Mail className="h-4 w-4" />
                 <span>info@isthriwala.com</span>
               </div>
+              <div className="flex items-start space-x-2">
+                <MapPin className="h-4 w-4 mt-1" />
+                <span>
+                  Currency Nagar, Vijayawada <br />
+                  & Tadepalli, Guntur
+                </span>
+              </div>
               <p className="text-sm">
                 Operating Hours:<br />
                 Mon-Sun: 7:00 AM - 9:00 PM
@@ -55,6 +65,7 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Bottom Bar */}
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-300">
             © 2025 Isthri Wala. All rights reserved. | Professional Ironing service
