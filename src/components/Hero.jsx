@@ -29,16 +29,19 @@ const Hero = () => {
                   Book Service Now
                 </HeroButton>
               </Link>
-           <HeroButton
-  as="a"
-  href="https://wa.me/918125423366"
-  target="_blank"
-  rel="noopener noreferrer"
+<HeroButton
+  asChild
   variant="hero-outline"
   className="flex items-center gap-2 text-white border-white"
 >
-  <MessageCircle className="w-4 h-4" />
-  WhatsApp +91 8125423366
+  <a
+    href="https://wa.me/918125423366?text=Hello%2C%20I%20need%20ironing%20services"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <MessageCircle className="w-4 h-4" />
+    +91 8125423366
+  </a>
 </HeroButton>
             </div>
 
