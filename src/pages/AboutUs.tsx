@@ -12,7 +12,7 @@ const AboutUs = () => {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">About Isthri Wala</h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            We are Mumbai's premier Ironing service, committed to providing exceptional care for your garments 
+            We are currency nagar Vijayawada & Tadepalli Guntur premier Ironing service, committed to providing exceptional care for your garments 
             with professional expertise and convenient home pickup and delivery services.
           </p>
         </div>
