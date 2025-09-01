@@ -11,7 +11,6 @@ const Footer = () => {
             <Link to="/" className="flex items-center space-x-2">
               <img src={logo} alt='logo' title='logo of website' className='w-[50px] h-[50px]' />
               <h1 className="text-2xl font-bold text-primary">ISTRIWALA</h1>
-              {/* <span className="hidden sm:block text-muted-foreground">Professional Ironing service</span> */}
             </Link>
             <p className="text-gray-300 mb-4">
               Your trusted partner for professional Ironing services. We handle your clothes with care and deliver excellence every time.
@@ -32,8 +31,6 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Our Services</h4>
             <ul className="space-y-2 text-gray-300">
-{/*               <li><a href="#" className="hover:text-primary transition-smooth">Washing & Cleaning</a></li> */}
-{/*               <li><a href="#" className="hover:text-primary transition-smooth">Dry Cleaning</a></li> */}
               <li><a href="#" className="hover:text-primary transition-smooth">Ironing </a></li>
               <li><a href="#" className="hover:text-primary transition-smooth">Free Pickup & Delivery</a></li>
             </ul>
@@ -61,6 +58,17 @@ const Footer = () => {
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-300">
             © 2025 Isthri Wala. All rights reserved. | Professional Ironing service
+          </p>
+          <p className="text-gray-400 text-sm mt-2">
+            Developed by{" "}
+            <Link
+              to="https://lakshmiit.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary font-semibold hover:underline"
+            >
+              LakshmiIT
+            </Link>
           </p>
         </div>
       </div>
