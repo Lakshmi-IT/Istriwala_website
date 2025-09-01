@@ -57,7 +57,7 @@ const ContactPage = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto text-center justify-center">
             {serviceAreas.map((area, index) => (
               <Card key={index} className="text-center border-2 border-primary/10 hover:border-primary/30 transition-smooth">
                 <CardContent className="p-4">
