@@ -57,16 +57,22 @@ const ContactPage = () => {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto text-center justify-center">
-            {serviceAreas.map((area, index) => (
-              <Card key={index} className="text-center border-2 border-primary/10 hover:border-primary/30 transition-smooth">
-                <CardContent className="p-4">
-                  <MapPin className="h-6 w-6 text-primary mx-auto mb-2" />
-                  <p className="font-medium">{area}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+         <div className="flex justify-center">
+  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl w-full place-items-center">
+    {serviceAreas.map((area, index) => (
+      <Card
+        key={index}
+        className="text-center border-2 border-primary/10 hover:border-primary/30 transition-smooth"
+      >
+        <CardContent className="p-4">
+          <MapPin className="h-6 w-6 text-primary mx-auto mb-2" />
+          <p className="font-medium">{area}</p>
+        </CardContent>
+      </Card>
+    ))}
+  </div>
+</div>
+
         </div>
       </section>
 
