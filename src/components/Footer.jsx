@@ -51,7 +51,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
-                <span>info@isthriwala.com</span>
+                <span>contact@istriwala.org</span>
               </div>
               <div className="flex items-start space-x-2">
                 <MapPin className="h-4 w-4 mt-1" />
