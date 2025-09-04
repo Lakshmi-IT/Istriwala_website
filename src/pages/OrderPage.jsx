@@ -183,13 +183,12 @@ export default function OrderPage() {
 
     const sendCartToBackend = async (itemData) => {
         try {
-            const token = localStorage.getItem("token");
+            const mobile = localStorage.getItem("mobile");
 
-            const response = await fetch(`${BASE_URL}api/cart/add`, {
+            const response = await fetch(`${BASE_URL}api/cart/add/${mobile}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify({
                     item: itemData.item,
@@ -280,13 +279,13 @@ export default function OrderPage() {
         try {
 
             console.log(itemId, qty, "itemId,qty ")
-            const token = localStorage.getItem("token"); // get user token
+            const mobile = localStorage.getItem("mobile"); // get user token
 
-            const response = await fetch(`${BASE_URL}api/cart/update-item`, {
-                method: "PATCH", // assuming your backend route uses PUT
+            const response = await fetch(`${BASE_URL}api/cart/update-item/${mobile}`, {
+                method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
+
                 },
                 body: JSON.stringify({ itemId, qty }),
             });
@@ -318,13 +317,13 @@ export default function OrderPage() {
 
     const deleteCartItemBackend = async (itemId) => {
         try {
-            const token = localStorage.getItem("token");
+            const mobile = localStorage.getItem("mobile");
 
-            const response = await fetch(`${BASE_URL}api/cart/remove-item`, {
+            const response = await fetch(`${BASE_URL}api/cart/remove-item/${mobile}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
+
                 },
                 body: JSON.stringify({ itemId }), // ✅ itemId in body
             });
@@ -362,13 +361,12 @@ export default function OrderPage() {
 
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (!token) return;
+        const mobile = localStorage.getItem("mobile");
+
 
         axios
-            .get(`${BASE_URL}api/user/profile`, {
-                headers: { Authorization: `Bearer ${token}` },
-            })
+            .get(`${BASE_URL}api/user/profile/${mobile}`
+            )
             .then((res) => {
                 const user = res.data.user;
 
@@ -387,13 +385,16 @@ export default function OrderPage() {
             .catch((err) => console.error(err));
     }, []);
 
+
+
+
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (!token) return;
+        const mobile = localStorage.getItem("mobile");
+
         axios
-            .get(`${BASE_URL}api/cart`, {
-                headers: { Authorization: `Bearer ${token}` },
-            })
+            .get(`${BASE_URL}api/cart/${mobile}`
+
+            )
             .then((res) => {
                 setFullcartDetails(res?.data)
 
@@ -415,14 +416,14 @@ export default function OrderPage() {
     const handlePlaceOrder = async () => {
 
         console.log("clicked")
-        const token = localStorage.getItem("token");
-        console.log(token, "token")
+        const mobile = localStorage.getItem("mobile");
+        // console.log(token, "token")
 
         if (paymentMethod === "cod") {
             // Direct COD Order
-            await fetch(`${BASE_URL}api/orders/create`, {
+            await fetch(`${BASE_URL}api/orders/create/${mobile}`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                headers: { "Content-Type": "application/json" },
                 //   body: JSON.stringify({ cartId, addressId, paymentMethod: "COD" }),
                 body: JSON.stringify({
                     cartId: fullcartDetails?._id,
@@ -440,9 +441,9 @@ export default function OrderPage() {
 
         if (paymentMethod === "razorpay") {
             // Step 1: Create Razorpay order
-            const res = await fetch(`${BASE_URL}api/orders/payment/order`, {
+            const res = await fetch(`${BASE_URL}api/orders/payment/order/${mobile}`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ cartId: fullcartDetails?._id, }),
             });
             const { razorpayOrder } = await res.json();
@@ -456,9 +457,9 @@ export default function OrderPage() {
                 order_id: razorpayOrder.id,
                 handler: async function (response) {
                     // Step 3: Verify & create final order
-                    const verifyRes = await fetch(`${BASE_URL}api/orders/verify`, {
+                    const verifyRes = await fetch(`${BASE_URL}api/orders/verify/${mobile}`, {
                         method: "POST",
-                        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                        headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             razorpayOrderId: response.razorpay_order_id,
                             razorpayPaymentId: response.razorpay_payment_id,

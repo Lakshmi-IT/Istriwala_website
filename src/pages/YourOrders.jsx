@@ -6,14 +6,11 @@ export default function YourOrders() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
+    const mobile = localStorage.getItem("mobile");
 
     const fetchOrders = async () => {
       try {
-        const res = await fetch(`${BASE_URL}api/orders/my-orders`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await fetch(`${BASE_URL}api/orders/my-orders/${mobile}`);
         const data = await res.json();
         if (data.success) {
           setOrders(data.orders);
@@ -28,12 +25,12 @@ export default function YourOrders() {
     fetchOrders();
   }, []);
 
-if (loading)
-  return (
-    <div className="flex justify-center items-center p-6">
-      <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-    </div>
-  );
+  if (loading)
+    return (
+      <div className="flex justify-center items-center p-6">
+        <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
@@ -50,14 +47,14 @@ if (loading)
             >
               <div className="flex justify-between items-center mb-2">
                 <h2 className="font-semibold text-lg">
-                  Order #{order._id.slice(-6)}
+                  Order #{order?.orderId}
                 </h2>
                 <span
                   className={`px-3 py-1 rounded text-sm ${order.orderStatus === "PAID"
-                      ? "bg-green-100 text-green-700"
-                      : order.orderStatus === "PENDING"
-                        ? "bg-yellow-100 text-yellow-700"
-                        : "bg-red-100 text-red-700"
+                    ? "bg-green-100 text-green-700"
+                    : order.orderStatus === "PENDING"
+                      ? "bg-yellow-100 text-yellow-700"
+                      : "bg-red-100 text-red-700"
                     }`}
                 >
                   {order.orderStatus}
@@ -69,11 +66,19 @@ if (loading)
                 {order.paymentId ? `(ID: ${order.paymentId})` : ""}
               </p>
 
-               <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600">
                 Total Price: ₹ {order?.cartId?.totalPrice}
-                
+
               </p>
-           
+               <p className="text-sm text-gray-600">
+                Pickup ID: <span className="font-semibold">{order?.pickupId}</span>
+
+              </p>
+               <p className="text-sm text-gray-600">
+                Delivery Id: <span className="font-semibold">{order?.deliveryId}</span>
+
+              </p>
+
 
               <p className="text-sm text-gray-600">
                 Date: {new Date(order.createdAt).toLocaleString()}

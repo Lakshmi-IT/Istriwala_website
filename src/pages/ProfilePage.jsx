@@ -14,12 +14,11 @@ const ProfilePage = () => {
     const [loadingLocation, setLoadingLocation] = useState(false);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (!token) return;
+        const mobile = localStorage.getItem("mobile");
+        // if (!userEmail) return;
         axios
-            .get(`${BASE_URL}api/user/profile`, {
-                headers: { Authorization: `Bearer ${token}` },
-            })
+            .get(`${BASE_URL}api/user/profile/${mobile}`)
+
             .then((res) => {
                 setUser(res.data.user);
                 setForm(res.data.user);
@@ -34,7 +33,7 @@ const ProfilePage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const token = localStorage.getItem("token");
+        // const token = localStorage.getItem("token");
         const formData = new FormData();
 
         for (let key in form) {
@@ -42,13 +41,18 @@ const ProfilePage = () => {
         }
 
         try {
-            const res = await axios.put(
-                `${BASE_URL}api/user/update`,
-                formData,
-                { headers: { Authorization: `Bearer ${token}` } }
+            const res = await axios.post(
+                `${BASE_URL}api/user/register`,
+                formData, // request body
+                {
+                    headers: { "Content-Type": "application/json" }, // config
+                }
             );
+            console.log(res.data, "users data")
+
             setUser(res.data);
             setIsEditing(false);
+            localStorage.setItem("mobile", res?.data?.user?.mobile);
             toast.success(res.data.message || "✅ Profile updated successfully!");
         } catch (err) {
             toast.error(
@@ -111,13 +115,13 @@ const ProfilePage = () => {
     };
 
 
-    if (!user) {
-        return (
-            <div className="flex justify-center items-center p-6">
-                <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-            </div>
-        );
-    }
+    // if (!user) {
+    //     return (
+    //         <div className="flex justify-center items-center p-6">
+    //             <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className="container mx-auto px-4 py-10">
@@ -139,7 +143,7 @@ const ProfilePage = () => {
                         <button
                             type="button"
                             onClick={() => {
-                                setForm(user); // reset to old values
+                                setForm(user);
                                 setIsEditing(false);
                             }}
                             className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition"
@@ -158,60 +162,24 @@ const ProfilePage = () => {
                             <input
                                 type="text"
                                 name="userName"
-                                value={form.userName || ""}
+                                value={form?.userName || ""}
                                 onChange={handleChange}
                                 disabled={!isEditing}
                                 className="border p-2 rounded w-full disabled:cursor-not-allowed"
                             />
                         </div>
-                        <div>
-                            <label className="block mb-1 font-medium">Email</label>
-                            <input
-                                type="email"
-                                name="email"
-                                value={form.email || ""}
-                                onChange={handleChange}
-                                disabled
-                                className="border p-2 rounded w-full cursor-not-allowed"
-                            />
-                        </div>
-                    </div>
-
-                    {/* Mobile & Alternative Mobile */}
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
+                         <div>
                             <label className="block mb-1 font-medium">Mobile</label>
                             <input
                                 type="text"
                                 name="mobile"
-                                value={form.mobile || ""}
+                                value={form?.mobile || ""}
                                 onChange={(e) => {
                                     const value = e.target.value.replace(/\D/g, "");
                                     if (value.length <= 10) {
                                         setForm({ ...form, mobile: value });
                                     }
                                 }}
-                                disabled
-                                required
-                                pattern="\d{10}"
-                                maxLength={10}
-                                className="border p-2 rounded w-full cursor-not-allowed"
-                            />
-                        </div>
-                        <div>
-                            <label className="block mb-1 font-medium">
-                                Alternative Mobile
-                            </label>
-                            <input
-                                type="text"
-                                name="alternativeMobile"
-                                value={form.alternativeMobile || ""}
-                                onChange={(e) => {
-                                    const value = e.target.value.replace(/\D/g, "");
-                                    if (value.length <= 10) {
-                                        setForm({ ...form, alternativeMobile: value });
-                                    }
-                                }}
                                 disabled={!isEditing}
                                 required
                                 pattern="\d{10}"
@@ -219,7 +187,10 @@ const ProfilePage = () => {
                                 className="border p-2 rounded w-full disabled:cursor-not-allowed"
                             />
                         </div>
+                       
                     </div>
+
+                   
 
                     {/* Address Section with Location Button */}
                     <div className="flex justify-between items-center">
@@ -243,7 +214,7 @@ const ProfilePage = () => {
                             <input
                                 type="text"
                                 name="hno"
-                                value={form.hno || ""}
+                                value={form?.hno || ""}
                                 required
                                 onChange={handleChange}
                                 disabled={!isEditing}
@@ -255,7 +226,7 @@ const ProfilePage = () => {
                             <input
                                 type="text"
                                 name="street"
-                                value={form.street || ""}
+                                value={form?.street || ""}
                                 onChange={handleChange}
                                 required
                                 disabled={!isEditing}
@@ -271,7 +242,7 @@ const ProfilePage = () => {
                             <input
                                 type="text"
                                 name="area"
-                                value={form.area || ""}
+                                value={form?.area || ""}
                                 required
                                 onChange={handleChange}
                                 disabled={!isEditing}
@@ -283,7 +254,7 @@ const ProfilePage = () => {
                             <input
                                 type="text"
                                 name="pincode"
-                                value={form.pincode || ""}
+                                value={form?.pincode || ""}
                                 onChange={(e) => {
                                     const value = e.target.value.replace(/\D/g, "");
                                     if (value.length <= 6) {
@@ -305,7 +276,7 @@ const ProfilePage = () => {
                         <input
                             type="text"
                             name="state"
-                            value={form.state || ""}
+                            value={form?.state || ""}
                             onChange={handleChange}
                             required
                             disabled={!isEditing}
@@ -317,7 +288,7 @@ const ProfilePage = () => {
                         <input
                             type="number"
                             name="lat"
-                            value={form.lat || ""}
+                            value={form?.lat || ""}
                             onChange={handleChange}
                             required
                             disabled={!isEditing}
@@ -329,7 +300,7 @@ const ProfilePage = () => {
                         <input
                             type="number"
                             name="lng"
-                            value={form.lng || ""}
+                            value={form?.lng || ""}
                             onChange={handleChange}
                             required
                             disabled={!isEditing}

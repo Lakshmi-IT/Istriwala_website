@@ -31,7 +31,27 @@ const Header = () => {
     { name: 'Home', path: '/', icon: <Home className="h-5 w-5" /> },
     { name: 'About Us', path: '/about', icon: <Info className="h-5 w-5" /> },
     { name: 'Services', path: '/services', icon: <Briefcase className="h-5 w-5" /> },
-   
+    {
+      name: "Contact",
+      path: "/contact",
+      icon: <Mail className="h-5 w-5" />,
+    },
+    {
+        name: "Place Order",
+        path: "/placeorder",
+        icon: <ShoppingCart className="h-5 w-5" />,
+      },
+    {
+      name: "Profile",
+      path: "/ProfilePage",
+      icon: <User className="h-5 w-5" />,
+    },
+    {
+      name: "Your Orders",
+      path: "/yourorders",
+      icon: <Package className="h-5 w-5" />,
+    }
+
 
 
 
@@ -39,38 +59,38 @@ const Header = () => {
   ];
 
   // ✅ Show Contact only if NOT logged in
-  if (!isLoggedIn) {
-    navItems.push({
-      name: "Contact",
-      path: "/contact",
-      icon: <Mail className="h-5 w-5" />,
-    },
-     {
-      name: "Place Order",
-      path: "/placeorder",
-      icon: <ShoppingCart className="h-5 w-5" />,
-    })
-  }
+  // if (!isLoggedIn) {
+  //   navItems.push({
+  //     name: "Contact",
+  //     path: "/contact",
+  //     icon: <Mail className="h-5 w-5" />,
+  //   },
+  //     {
+  //       name: "Place Order",
+  //       path: "/placeorder",
+  //       icon: <ShoppingCart className="h-5 w-5" />,
+  //     })
+  // }
 
 
   // ✅ add Order only if logged in
-  if (isLoggedIn) {
-    navItems.push({
-      name: "Profile",
-      path: "/ProfilePage",
-      icon: <User className="h-5 w-5" />,
-    });
-    navItems.push({
-      name: "Place Order",
-      path: "/placeorder",
-      icon: <ShoppingCart className="h-5 w-5" />,
-    });
-    navItems.push({
-      name: "Your Orders",
-      path: "/yourorders",
-      icon: <Package className="h-5 w-5" />,
-    });
-  }
+  // if (isLoggedIn) {
+  //   navItems.push({
+  //     name: "Profile",
+  //     path: "/ProfilePage",
+  //     icon: <User className="h-5 w-5" />,
+  //   });
+  //   navItems.push({
+  //     name: "Place Order",
+  //     path: "/placeorder",
+  //     icon: <ShoppingCart className="h-5 w-5" />,
+  //   });
+  //   navItems.push({
+  //     name: "Your Orders",
+  //     path: "/yourorders",
+  //     icon: <Package className="h-5 w-5" />,
+  //   });
+  // }
 
 
 
@@ -117,7 +137,7 @@ const Header = () => {
           </nav>
 
           {/* Buttons */}
-          <div className="flex items-center space-x-4">
+          {/* <div className="flex items-center space-x-4">
             {isLoggedIn ? (
               <button
                 onClick={handleLogout}
@@ -135,25 +155,24 @@ const Header = () => {
                     <LogIn className="h-5 w-5" /> Login
                   </button>
                 </Link>
-                {/* <Link to="/RegisterPage">
-                  <button
-                    type="button"
-                    className="flex items-center gap-2 bg-white border border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 hover:text-white transition"
-                  >
-                    <UserPlus className="h-5 w-5" /> Register
-                  </button>
-                </Link> */}
+               
               </div>
             )}
 
-            {/* Mobile Menu Button */}
+          
             <button
               className="lg:hidden p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <Menu className="h-6 w-6" />
             </button>
-          </div>
+          </div> */}
+            <button
+              className="lg:hidden p-2"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              <Menu className="h-6 w-6" />
+            </button>
         </div>
 
         {/* Mobile Navigation */}
@@ -177,7 +196,7 @@ const Header = () => {
         )}
         {/* ✅ Bottom Navigation for Mobile (App-like) */}
 
-        {tokenPresent && (
+       
           <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
             <div className="flex justify-around items-center py-2">
               <Link
@@ -228,7 +247,7 @@ const Header = () => {
               </Link>
             </div>
           </nav>
-        )}
+       
 
       </div>
     </header>

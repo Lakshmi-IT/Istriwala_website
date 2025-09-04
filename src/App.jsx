@@ -44,26 +44,26 @@ const App = () => (
           <Route
             path="/placeorder"
             element={
-              <ProtectedRoute>
+              // <ProtectedRoute>
                 <OrderPage />
-              </ProtectedRoute>
+              // </ProtectedRoute>
             }
           />
 
           <Route
             path="/ProfilePage"
             element={
-              <ProtectedRoute>
+              // <ProtectedRoute>
                 <ProfilePage />
-              </ProtectedRoute>
+              // </ProtectedRoute>
             }
           />
           <Route
             path="/yourorders"
             element={
-              <ProtectedRoute>
+              // <ProtectedRoute>
                 <YourOrders />
-              </ProtectedRoute>
+              // </ProtectedRoute>
             }
           />
           <Route path="*" element={<NotFound />} />
