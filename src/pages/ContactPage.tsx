@@ -10,7 +10,7 @@ import {
 import { MapPin, Clock, Users, Award } from "lucide-react";
 
 const ContactPage = () => {
-  const serviceAreas = ["Currency Nagar Vijayawada", "Tadepalli Guntur "];
+  const serviceAreas = ["Currency Nagar Vijayawada", " Beside CSR kalyanamandapam, Tadepalli, Guntur District. "];
 
   const faqs = [
     {

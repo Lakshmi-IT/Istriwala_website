@@ -515,6 +515,8 @@ export default function OrderPage() {
 
 
 
+    const usermobilenumber = localStorage.getItem("mobile");
+    console.log(usermobilenumber, "usermobilenumber")
 
     return (
         <div className="max-w-full mx-auto px-5 lg:px-14 my-5 grid md:grid-cols-3 gap-6">
@@ -678,56 +680,52 @@ export default function OrderPage() {
 
                 {/* Address List */}
 
+                {/* const usermobilenumber = localStorage.getItem("mobile"); */}
+
                 <div className="space-y-4">
-                    {address.map((addr) => (
-                        <label
-                            key={addr.id}
-                            className={`flex items-start p-3 border rounded-lg 
-                               
-                                `}
-                        >
-                            <input
-                                type="radio"
-                                name="address"
-                                value={addr.id}
-                                checked="true"
-                                // onChange={() => setSelectedAddress(addr.id)}
-                                className="mt-1 mr-3"
-                            />
+                    {address?.length === 0 ? (
+                        // No addresses → show "Add Address"
+                        <div className="flex justify-center w-full">
+                            <Link to="/ProfilePage">
+                                <button
+                                    type="button"
+                                    className="flex items-center gap-2 bg-white border border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 hover:text-white transition"
+                                >
+                                    <UserPlus className="h-5 w-5" /> Add Address
+                                </button>
+                            </Link>
+                        </div>
+                    ) : (
+                        // Show saved addresses with radio selection
+                        address.map((addr) => (
+                            <label
+                                key={addr.id}
+                                className={`flex items-start p-3 border rounded-lg cursor-pointer ${selectedAddress === addr.id ? "border-blue-500" : "border-gray-300"
+                                    }`}
+                            >
+                                <input
+                                    type="radio"
+                                    name="address"
+                                    value={addr.id}
+                                    checked={selectedAddress === addr.id}
+                                    onChange={() => setSelectedAddress(addr.id)}
+                                    className="mt-1 mr-3"
+                                />
 
-                            {isInvalidAddress ? (
                                 <div>
-
-                                    <div className="flex justify-center">
-
-                                        <Link to={"/ProfilePage"}>
-                                            <button
-                                                type="button"
-                                                className="flex items-center gap-2 bg-white border border-blue-600 text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 hover:text-white transition"
-                                            >
-                                                <UserPlus className="h-5 w-5" /> Add Address
-                                            </button>
-                                        </Link>
-                                    </div>
-
-                                </div>
-                            ) : (
-                                <div>
-
                                     <div className="flex justify-between">
-                                        <p className="font-semibold">{addr.label}</p>
-                                        <Link to={"/ProfilePage"}>
+                                        <p className="font-semibold">{addr?.label}</p>
+                                        <Link to="/ProfilePage">
                                             <p className="text-blue-500 font-semibold cursor-pointer">Edit</p>
                                         </Link>
                                     </div>
-                                    <p className="text-sm text-gray-600">{addr.details}</p>
+                                    <p className="text-sm text-gray-600">{addr?.details}</p>
                                 </div>
-                            )}
-
-
-                        </label>
-                    ))}
+                            </label>
+                        ))
+                    )}
                 </div>
+
 
                 {/* Payment Method */}
                 <h2 className="text-xl font-bold mt-6 mb-3 text-blue-700 flex items-center">

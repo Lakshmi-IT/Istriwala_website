@@ -54,7 +54,7 @@ const ServicesPage = () => {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-6">Our Services</h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            Comprehensive laundry solutions tailored to meet all your clothing care needs 
+            Comprehensive ironing solutions tailored to meet all your clothing care needs 
             with professional expertise and convenient service.
           </p>
         </div>

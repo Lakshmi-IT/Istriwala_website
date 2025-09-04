@@ -10,9 +10,9 @@ const AboutUs = () => {
       {/* About Us Hero Section */}
       <section className="py-20 bg-gradient-primary text-white">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6">About Isthri Wala</h1>
+          <h1 className="text-5xl font-bold mb-6">About IstriWala</h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            We are currency nagar Vijayawada & Tadepalli Guntur premier Ironing service, committed to providing exceptional care for your garments 
+            We are currency nagar Vijayawada &  Beside CSR kalyanamandapam, Tadepalli, Guntur District. premier Ironing service, committed to providing exceptional care for your garments 
             with professional expertise and convenient home pickup and delivery services.
           </p>
         </div>
@@ -28,7 +28,7 @@ const AboutUs = () => {
               <div className="space-y-6">
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   Founded with a simple mission to make ironing care effortless for busy families and professionals, 
-                  IsthriWala has been serving currency nagar Vijayawada & Tadepalli Guntur with dedication and excellence for years.
+                  IstriWala has been serving currency nagar Vijayawada &  Beside CSR kalyanamandapam, Tadepalli, Guntur District. with dedication and excellence for years.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
                   We understand that your clothes are more than just fabric – they represent your style, 
@@ -50,7 +50,7 @@ const AboutUs = () => {
                 
                 <h3 className="text-2xl font-bold mb-6 text-primary">Our Vision</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  To become the most trusted Ironing service provider in currency nagar Vijayawada & Tadepalli Guntur , known for exceptional 
+                  To become the most trusted Ironing service provider in currency nagar Vijayawada &  Beside CSR kalyanamandapam, Tadepalli, Guntur District. , known for exceptional 
                   quality, reliability, and customer satisfaction.
                 </p>
               </div>

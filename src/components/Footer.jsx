@@ -64,7 +64,7 @@ const Footer = () => {
                 <MapPin className="h-4 w-4 mt-1" />
                 <span>
 
-                  Tadepalli, Guntur
+                 Beside CSR kalyanamandapam, Tadepalli, Guntur District.
                 </span>
               </div>
               <p className="text-sm">
@@ -78,7 +78,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-300">
-            © 2025 Isthri Wala. All rights reserved. | Professional Ironing service
+            © 2025 IstriWala. All rights reserved. | Professional Ironing service
           </p>
           <p className="text-gray-400 text-sm mt-2">
             Developed by{" "}

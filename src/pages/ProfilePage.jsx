@@ -290,7 +290,7 @@ const ProfilePage = () => {
                             name="lat"
                             value={form?.lat || ""}
                             onChange={handleChange}
-                            required
+                            
                             disabled={!isEditing}
                             className="border p-2 rounded w-full disabled:cursor-not-allowed"
                         />
@@ -302,7 +302,7 @@ const ProfilePage = () => {
                             name="lng"
                             value={form?.lng || ""}
                             onChange={handleChange}
-                            required
+                            
                             disabled={!isEditing}
                             className="border p-2 rounded w-full disabled:cursor-not-allowed"
                         />

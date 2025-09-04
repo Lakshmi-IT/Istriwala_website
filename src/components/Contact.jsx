@@ -54,7 +54,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold">Service Area</h4>
-                  <p className="text-blue-100">Tadepalli Guntur</p>
+                  <p className="text-blue-100"> Beside CSR kalyanamandapam, Tadepalli, Guntur District.</p>
                 </div>
               </div>
 
