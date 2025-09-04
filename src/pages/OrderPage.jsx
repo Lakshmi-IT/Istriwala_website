@@ -185,6 +185,12 @@ export default function OrderPage() {
         try {
             const mobile = localStorage.getItem("mobile");
 
+            if (!mobile) {
+                toast.error("Please add profile details first!");
+                navigate("/ProfilePage");
+                return; // ✅ stop execution here
+            }
+
             const response = await fetch(`${BASE_URL}api/cart/add/${mobile}`, {
                 method: "POST",
                 headers: {
