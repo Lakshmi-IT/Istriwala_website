@@ -236,7 +236,7 @@ const Header = () => {
               </Link>
 
               <Link
-                to={isLoggedIn ? "/ProfilePage" : "/LoginPage"}
+                to={"/ProfilePage"}
                 className={`flex flex-col items-center text-xs ${location.pathname === "/ProfilePage" || location.pathname === "/LoginPage"
                   ? "text-blue-600 font-semibold"
                   : "text-gray-500"
