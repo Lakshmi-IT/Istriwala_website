@@ -52,12 +52,12 @@ export default function YourOrders() {
                 <span
                   className={`px-3 py-1 rounded text-sm text-center
     ${order?.orderStatus === "PENDING" ? "bg-yellow-200 text-yellow-800" : ""}
-    ${order?.orderStatus === "PICKUP" ? "bg-yellow-300 text-yellow-900" : ""}
+    ${order?.orderStatus === "PICKED_UP" ? "bg-yellow-300 text-yellow-900" : ""}
     ${order?.orderStatus === "DELIVERED" ? "bg-green-200 text-green-800" : ""}
   `}
                 >
                   {order.orderStatus === "PENDING" && "Istriwala is processing your order"}
-                  {order.orderStatus === "PICKUP" && "Picked Up"}
+                  {order.orderStatus === "PICKED_UP" && "Picked Up"}
                   {order.orderStatus === "DELIVERED" && "Delivered"}
                 </span>
 
