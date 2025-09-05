@@ -157,6 +157,12 @@ export default function OrderPage() {
     const [cartData, setCartData] = useState([])
     const [fullcartDetails, setFullcartDetails] = useState([])
     const [totalAmount, setTotalAmount] = useState(0)
+    const [selectedAddress, setSelectedAddress] = useState(null);
+
+    // 👆 initially null, then updated in useEffect when address loads
+
+
+
 
 
 
@@ -175,6 +181,15 @@ export default function OrderPage() {
 
 
     // Example addresses
+
+    useEffect(() => {
+        if (address.length > 0 && !selectedAddress) {
+            setSelectedAddress(address[0].id);
+        }
+    }, [address, selectedAddress]);
+
+
+
 
 
 
@@ -522,7 +537,7 @@ export default function OrderPage() {
 
 
     const usermobilenumber = localStorage.getItem("mobile");
-    console.log(usermobilenumber, "usermobilenumber")
+
 
     return (
         <div className="max-w-full mx-auto px-5 lg:px-14 my-5 grid md:grid-cols-3 gap-6">
@@ -534,8 +549,9 @@ export default function OrderPage() {
 
                 {/* Category Selector */}
                 <div className="mb-3">
-                    <label className="font-semibold">Select Category:</label>
+                    <label className="font-semibold" htmlFor="category">Select Category:</label>
                     <select
+                        id="category"
                         value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}
                         className="ml-2 border p-2 rounded"
@@ -550,8 +566,64 @@ export default function OrderPage() {
 
 
 
+                {/* <div className="mb-3 relative">
+                    <label className="font-semibold" htmlFor="itemSelect">Select Item:</label>
+                    <div
+                     id="itemSelect"
+
+                        className="mt-2 border p-2 rounded w-full cursor-pointer"
+                        onClick={() => setOpen(!open)}
+                    >
+                        {selectedItem || "-- choose --"}
+                    </div>
+
+                    {open && (
+                        <div className="absolute z-10 mt-1 w-full bg-white border rounded shadow-lg max-h-60 overflow-y-auto">
+                          
+                            <input
+                                type="text"
+
+                                placeholder="Search..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="w-full p-2 border-b"
+                            />
+
+                          
+                            {filteredItems.length > 0 ? (
+                                filteredItems.map((item) => (
+                                    <div
+                                        key={item.name}
+                                        onClick={() => {
+                                            setSelectedItem(item.name);
+                                            setOpen(false);
+                                            setSearchTerm("");
+                                        }}
+                                        className="p-2 hover:bg-blue-100 cursor-pointer"
+                                    >
+                                        {item.name}
+                                    
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="p-2 text-gray-500">No items found</div>
+                            )}
+                        </div>
+                    )}
+                </div> */}
                 <div className="mb-3 relative">
-                    <label className="font-semibold">Select Item:</label>
+                    <label className="font-semibold" htmlFor="itemSelect">Select Item:</label>
+
+                    {/* Hidden input just for accessibility & form binding */}
+                    <input
+                        type="text"
+                        id="itemSelect"
+                        value={selectedItem}
+                        readOnly
+                        className="hidden"
+                    />
+
+                    {/* Custom dropdown trigger */}
                     <div
                         className="mt-2 border p-2 rounded w-full cursor-pointer"
                         onClick={() => setOpen(!open)}
@@ -583,7 +655,6 @@ export default function OrderPage() {
                                         className="p-2 hover:bg-blue-100 cursor-pointer"
                                     >
                                         {item.name}
-                                        {/* (₹{item.price}) */}
                                     </div>
                                 ))
                             ) : (
@@ -593,10 +664,12 @@ export default function OrderPage() {
                     )}
                 </div>
 
-                {/* Quantity */}
+
+
                 <div className="mb-3">
-                    <label className="font-semibold">Quantity:</label>
+                    <label className="font-semibold" htmlFor="qty">Quantity:</label>
                     <input
+                        id="qty"
                         type="number"
                         value={qty}
                         min="1"
@@ -703,7 +776,10 @@ export default function OrderPage() {
                         </div>
                     ) : (
                         // Show saved addresses with radio selection
-                        address.map((addr) => (
+
+
+
+                        address?.map((addr) => (
                             <label
                                 key={addr.id}
                                 className={`flex items-start p-3 border rounded-lg cursor-pointer ${selectedAddress === addr.id ? "border-blue-500" : "border-gray-300"
@@ -729,6 +805,8 @@ export default function OrderPage() {
                                 </div>
                             </label>
                         ))
+
+
                     )}
                 </div>
 

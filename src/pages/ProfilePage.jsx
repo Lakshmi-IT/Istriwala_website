@@ -283,7 +283,7 @@ const ProfilePage = () => {
                             className="border p-2 rounded w-full disabled:cursor-not-allowed"
                         />
                     </div>
-                    <div>
+                    <div className="hidden">
                         <label className="block mb-1 font-medium">Latitude</label>
                         <input
                             type="number"
@@ -295,7 +295,7 @@ const ProfilePage = () => {
                             className="border p-2 rounded w-full disabled:cursor-not-allowed"
                         />
                     </div>
-                    <div>
+                    <div className="hidden">
                         <label className="block mb-1 font-medium">Longitude</label>
                         <input
                             type="number"
@@ -304,7 +304,7 @@ const ProfilePage = () => {
                             onChange={handleChange}
                             
                             disabled={!isEditing}
-                            className="border p-2 rounded w-full disabled:cursor-not-allowed"
+                            className="border p-2 rounded w-full disabled:cursor-not-allowed hidden"
                         />
                     </div>
 

@@ -37,10 +37,10 @@ const Header = () => {
       icon: <Mail className="h-5 w-5" />,
     },
     {
-        name: "Place Order",
-        path: "/placeorder",
-        icon: <ShoppingCart className="h-5 w-5" />,
-      },
+      name: "Place Order",
+      path: "/placeorder",
+      icon: <ShoppingCart className="h-5 w-5" />,
+    },
     {
       name: "Profile",
       path: "/ProfilePage",
@@ -167,12 +167,13 @@ const Header = () => {
               <Menu className="h-6 w-6" />
             </button>
           </div> */}
-            <button
-              className="lg:hidden p-2"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <Menu className="h-6 w-6" />
-            </button>
+          <button
+            type='button'
+            className="lg:hidden p-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <Menu className="h-6 w-6" />
+          </button>
         </div>
 
         {/* Mobile Navigation */}
@@ -196,58 +197,58 @@ const Header = () => {
         )}
         {/* ✅ Bottom Navigation for Mobile (App-like) */}
 
-       
-          <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
-            <div className="flex justify-around items-center py-2">
-              <Link
-                to="/"
-                className={`flex flex-col items-center text-xs ${location.pathname === "/" ? "text-blue-600 font-semibold" : "text-gray-500"
-                  }`}
-              >
-                <Home className="h-5 w-5" />
-                <span>Home</span>
-              </Link>
 
-              <Link
-                to="/placeorder"
-                className={`flex flex-col items-center text-xs ${location.pathname === "/placeorder" ? "text-blue-600 font-semibold" : "text-gray-500"
-                  }`}
-              >
-                <ShoppingCart className="h-5 w-5" />
-                <span>Place Order</span>
-              </Link>
+        <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50">
+          <div className="flex justify-around items-center py-2">
+            <Link
+              to="/"
+              className={`flex flex-col items-center text-xs ${location.pathname === "/" ? "text-blue-600 font-semibold" : "text-gray-500"
+                }`}
+            >
+              <Home className="h-5 w-5" />
+              <span>Home</span>
+            </Link>
 
-              <Link
-                to="/yourorders"
-                className={`flex flex-col items-center text-xs ${location.pathname === "/yourorders" ? "text-blue-600 font-semibold" : "text-gray-500"
-                  }`}
-              >
-                <Package className="h-5 w-5" />
-                <span>My Orders</span>
-              </Link>
+            <Link
+              to="/placeorder"
+              className={`flex flex-col items-center text-xs ${location.pathname === "/placeorder" ? "text-blue-600 font-semibold" : "text-gray-500"
+                }`}
+            >
+              <ShoppingCart className="h-5 w-5" />
+              <span>Place Order</span>
+            </Link>
 
-              <Link
-                to="/contact"
-                className={`flex flex-col items-center text-xs ${location.pathname === "/contact" ? "text-blue-600 font-semibold" : "text-gray-500"
-                  }`}
-              >
-                <Info className="h-5 w-5" />
-                <span>Help</span>
-              </Link>
+            <Link
+              to="/yourorders"
+              className={`flex flex-col items-center text-xs ${location.pathname === "/yourorders" ? "text-blue-600 font-semibold" : "text-gray-500"
+                }`}
+            >
+              <Package className="h-5 w-5" />
+              <span>My Orders</span>
+            </Link>
 
-              <Link
-                to={"/ProfilePage"}
-                className={`flex flex-col items-center text-xs ${location.pathname === "/ProfilePage" || location.pathname === "/LoginPage"
-                  ? "text-blue-600 font-semibold"
-                  : "text-gray-500"
-                  }`}
-              >
-                <User className="h-5 w-5" />
-                <span>Account</span>
-              </Link>
-            </div>
-          </nav>
-       
+            <Link
+              to="/contact"
+              className={`flex flex-col items-center text-xs ${location.pathname === "/contact" ? "text-blue-600 font-semibold" : "text-gray-500"
+                }`}
+            >
+              <Info className="h-5 w-5" />
+              <span>Help</span>
+            </Link>
+
+            <Link
+              to={"/ProfilePage"}
+              className={`flex flex-col items-center text-xs ${location.pathname === "/ProfilePage" || location.pathname === "/LoginPage"
+                ? "text-blue-600 font-semibold"
+                : "text-gray-500"
+                }`}
+            >
+              <User className="h-5 w-5" />
+              <span>Account</span>
+            </Link>
+          </div>
+        </nav>
+
 
       </div>
     </header>
