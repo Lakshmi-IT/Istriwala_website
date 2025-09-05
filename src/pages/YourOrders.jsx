@@ -50,15 +50,17 @@ export default function YourOrders() {
                   Order #{order?.orderId}
                 </h2>
                 <span
-                  className={`px-3 py-1 rounded text-sm ${order.orderStatus === "PAID"
-                    ? "bg-green-100 text-green-700"
-                    : order.orderStatus === "PENDING"
-                      ? "bg-yellow-100 text-yellow-700"
-                      : "bg-red-100 text-red-700"
-                    }`}
+                  className={`px-3 py-1 rounded text-sm text-center
+    ${order?.orderStatus === "PENDING" ? "bg-yellow-200 text-yellow-800" : ""}
+    ${order?.orderStatus === "PICKUP" ? "bg-yellow-300 text-yellow-900" : ""}
+    ${order?.orderStatus === "DELIVERED" ? "bg-green-200 text-green-800" : ""}
+  `}
                 >
-                  {order.orderStatus}
+                  {order.orderStatus === "PENDING" && "Istriwala is processing your order"}
+                  {order.orderStatus === "PICKUP" && "Picked Up"}
+                  {order.orderStatus === "DELIVERED" && "Delivered"}
                 </span>
+
               </div>
 
               <p className="text-sm text-gray-600">
@@ -70,11 +72,11 @@ export default function YourOrders() {
                 Total Price: ₹ {order?.cartId?.totalPrice}
 
               </p>
-               <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600">
                 Pickup ID: <span className="font-semibold">{order?.pickupId}</span>
 
               </p>
-               <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600">
                 Delivery Id: <span className="font-semibold">{order?.deliveryId}</span>
 
               </p>
