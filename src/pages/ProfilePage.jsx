@@ -30,6 +30,10 @@ const ProfilePage = () => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
+
+
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -48,16 +52,30 @@ const ProfilePage = () => {
                     headers: { "Content-Type": "application/json" }, // config
                 }
             );
-            console.log(res.data, "users data")
+            console.log(res, "users data")
 
-            setUser(res.data);
-            setIsEditing(false);
-            localStorage.setItem("mobile", res?.data?.user?.mobile);
-            toast.success(res.data.message || "✅ Profile updated successfully!");
+            if (res.status === 200) {
+                setUser(res.data);
+                setIsEditing(false);
+                localStorage.setItem("mobile", res?.data?.user?.mobile);
+                toast.success(res.data.message || "✅ Profile updated successfully!");
+
+            } else {
+                return toast.error(
+                    "❌ As of Now, We are not providing Services to your Location."
+                );
+            }
+
+
         } catch (err) {
-            toast.error(
-                "❌ Failed to update profile."
-            );
+            if (err.response && err.response.data?.message) {
+                toast.error(err.response.data.message);
+            } else {
+                toast.error("❌ Failed to update profile.");
+            }
+            // toast.error(
+            //     "❌ Failed to update profile."
+            // );
             console.error(err);
 
         }
@@ -123,6 +141,32 @@ const ProfilePage = () => {
     //     );
     // }
 
+    // add this helper function inside ProfilePage
+    const fetchLocationFromPincode = async (pincode) => {
+        try {
+            const res = await axios.get(`https://api.postalpincode.in/pincode/${pincode}`);
+            const data = res.data[0];
+
+            if (data.Status === "Success" && data.PostOffice?.length > 0) {
+                const postOffice = data.PostOffice[0];
+                console.log(postOffice,"postOffice")
+                setForm((prev) => ({
+                    ...prev,
+                    area: postOffice.District || prev.area,
+                    state: postOffice.State || prev.state,
+                }));
+                toast.success(`📍 Location detected: ${postOffice.District}, ${postOffice.State}`);
+            } else {
+                toast.error("❌ Invalid Pincode or not found");
+                setForm((prev) => ({ ...prev, area: "", state: "" }));
+            }
+        } catch (error) {
+            console.error("Pincode API error:", error);
+            toast.error("❌ Failed to fetch location from pincode");
+        }
+    };
+
+
     return (
         <div className="container mx-auto px-4 py-10">
             <div className="max-w-3xl mx-auto bg-white shadow-md rounded-xl p-6">
@@ -168,7 +212,7 @@ const ProfilePage = () => {
                                 className="border p-2 rounded w-full disabled:cursor-not-allowed"
                             />
                         </div>
-                         <div>
+                        <div>
                             <label className="block mb-1 font-medium">Mobile</label>
                             <input
                                 type="text"
@@ -187,10 +231,10 @@ const ProfilePage = () => {
                                 className="border p-2 rounded w-full disabled:cursor-not-allowed"
                             />
                         </div>
-                       
+
                     </div>
 
-                   
+
 
                     {/* Address Section with Location Button */}
                     <div className="flex justify-between items-center">
@@ -249,7 +293,7 @@ const ProfilePage = () => {
                                 className="border p-2 rounded w-full disabled:cursor-not-allowed"
                             />
                         </div>
-                        <div>
+                        {/* <div>
                             <label className="block mb-1 font-medium">Pincode</label>
                             <input
                                 type="text"
@@ -267,7 +311,30 @@ const ProfilePage = () => {
                                 maxLength={6}
                                 className="border p-2 rounded w-full disabled:cursor-not-allowed"
                             />
+                        </div> */}
+                        <div>
+                            <label className="block mb-1 font-medium">Pincode</label>
+                            <input
+                                type="text"
+                                name="pincode"
+                                value={form?.pincode || ""}
+                                onChange={(e) => {
+                                    const value = e.target.value.replace(/\D/g, ""); // only numbers
+                                    if (value.length <= 6) {
+                                        setForm({ ...form, pincode: value });
+                                        if (value.length === 6) {
+                                            fetchLocationFromPincode(value); // ✅ auto fetch city/state
+                                        }
+                                    }
+                                }}
+                                disabled={!isEditing}
+                                required
+                                pattern="\d{6}"
+                                maxLength={6}
+                                className="border p-2 rounded w-full disabled:cursor-not-allowed"
+                            />
                         </div>
+
                     </div>
 
                     {/* State */}
@@ -290,7 +357,7 @@ const ProfilePage = () => {
                             name="lat"
                             value={form?.lat || ""}
                             onChange={handleChange}
-                            
+
                             disabled={!isEditing}
                             className="border p-2 rounded w-full disabled:cursor-not-allowed"
                         />
@@ -302,7 +369,7 @@ const ProfilePage = () => {
                             name="lng"
                             value={form?.lng || ""}
                             onChange={handleChange}
-                            
+
                             disabled={!isEditing}
                             className="border p-2 rounded w-full disabled:cursor-not-allowed hidden"
                         />

@@ -32,6 +32,42 @@ export default function YourOrders() {
       </div>
     );
 
+
+
+
+  const handleCancelOrder = async (orderId) => {
+    try {
+      // Optional: show a loading state if needed
+      const response = await fetch(`${BASE_URL}api/orders/cancel/${orderId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      console.log(response, "response")
+
+      const data = await response.json();
+
+      if (response.ok) {
+
+        // Update order status locally if needed
+        alert("successfully canceled order.");
+        setOrders((prevOrders) =>
+          prevOrders.map((order) =>
+            order._id === orderId ? { ...order, orderStatus: "CANCELLED" } : order
+          )
+        );
+      } else {
+        alert("Failed to cancel order.");
+      }
+    } catch (error) {
+      alert("Something went wrong. Try again!");
+      console.error(error);
+    }
+  };
+
+
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">My Orders</h1>
@@ -49,17 +85,24 @@ export default function YourOrders() {
                 <h2 className="font-semibold text-lg">
                   Order #{order?.orderId}
                 </h2>
-                <span
-                  className={`px-3 py-1 rounded text-sm text-center
+                <div className="flex flex-col justify-center items-center">
+                  <span
+                    className={`px-3 py-1 rounded text-sm text-center
     ${order?.orderStatus === "PENDING" ? "bg-yellow-200 text-yellow-800" : ""}
+     ${order?.orderStatus === "CANCELLED" ? "bg-red-500 text-white" : ""}
     ${order?.orderStatus === "PICKED_UP" ? "bg-yellow-300 text-yellow-900" : ""}
     ${order?.orderStatus === "DELIVERED" ? "bg-green-200 text-green-800" : ""}
   `}
-                >
-                  {order.orderStatus === "PENDING" && "Istriwala is processing your order"}
-                  {order.orderStatus === "PICKED_UP" && "Picked Up"}
-                  {order.orderStatus === "DELIVERED" && "Delivered"}
-                </span>
+                  >
+                    {order.orderStatus === "PENDING" && "Istriwala is processing your order"}
+                    {order.orderStatus === "PICKED_UP" && "Picked Up"}
+                    {order.orderStatus === "CANCELLED" && "CANCELLED"}
+                    {order.orderStatus === "DELIVERED" && "Delivered"}
+                  </span>
+                  {order?.orderStatus === "PENDING" && (
+                    <button type="button" className="bg-red-500 px-3 py-1 w-[100%] rounded-md mt-3" onClick={() => handleCancelOrder(order._id)} >Cancel</button>
+                  )}
+                </div>
 
               </div>
 
