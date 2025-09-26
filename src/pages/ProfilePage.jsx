@@ -149,7 +149,7 @@ const ProfilePage = () => {
 
             if (data.Status === "Success" && data.PostOffice?.length > 0) {
                 const postOffice = data.PostOffice[0];
-                console.log(postOffice,"postOffice")
+                console.log(postOffice, "postOffice")
                 setForm((prev) => ({
                     ...prev,
                     area: postOffice.District || prev.area,
@@ -175,7 +175,7 @@ const ProfilePage = () => {
                     <h2 className="text-2xl font-bold flex items-center gap-2">
                         <User className="h-7 w-7 text-blue-600" /> Profile Settings
                     </h2>
-                    {!isEditing ? (
+                    {/* {!isEditing ? (
                         <button
                             type="button"
                             onClick={() => setIsEditing(true)}
@@ -194,7 +194,7 @@ const ProfilePage = () => {
                         >
                             Cancel
                         </button>
-                    )}
+                    )} */}
                 </div>
 
                 {/* Form */}
@@ -208,7 +208,7 @@ const ProfilePage = () => {
                                 name="userName"
                                 value={form?.userName || ""}
                                 onChange={handleChange}
-                                disabled={!isEditing}
+                                // disabled={!isEditing}
                                 className="border p-2 rounded w-full disabled:cursor-not-allowed"
                             />
                         </div>
@@ -224,7 +224,7 @@ const ProfilePage = () => {
                                         setForm({ ...form, mobile: value });
                                     }
                                 }}
-                                disabled={!isEditing}
+                                // disabled={!isEditing}
                                 required
                                 pattern="\d{10}"
                                 maxLength={10}
@@ -239,7 +239,7 @@ const ProfilePage = () => {
                     {/* Address Section with Location Button */}
                     <div className="flex justify-between items-center">
                         <h3 className="font-semibold text-lg">Address</h3>
-                        {isEditing && (
+                        
                             <button
                                 type="button"
                                 onClick={fillWithCurrentLocation}
@@ -248,7 +248,7 @@ const ProfilePage = () => {
                                 <MapPin className="h-5 w-5" />
                                 {loadingLocation ? "Fetching..." : "Use My Location"}
                             </button>
-                        )}
+                        {/* )} */}
                     </div>
 
                     {/* House / Street */}
@@ -261,7 +261,7 @@ const ProfilePage = () => {
                                 value={form?.hno || ""}
                                 required
                                 onChange={handleChange}
-                                disabled={!isEditing}
+                                // disabled={!isEditing}
                                 className="border p-2 rounded w-full disabled:cursor-not-allowed"
                             />
                         </div>
@@ -273,7 +273,7 @@ const ProfilePage = () => {
                                 value={form?.street || ""}
                                 onChange={handleChange}
                                 required
-                                disabled={!isEditing}
+                                // disabled={!isEditing}
                                 className="border p-2 rounded w-full disabled:cursor-not-allowed"
                             />
                         </div>
@@ -289,7 +289,7 @@ const ProfilePage = () => {
                                 value={form?.area || ""}
                                 required
                                 onChange={handleChange}
-                                disabled={!isEditing}
+                                // disabled={!isEditing}
                                 className="border p-2 rounded w-full disabled:cursor-not-allowed"
                             />
                         </div>
@@ -327,7 +327,7 @@ const ProfilePage = () => {
                                         }
                                     }
                                 }}
-                                disabled={!isEditing}
+                                // disabled={!isEditing}
                                 required
                                 pattern="\d{6}"
                                 maxLength={6}
@@ -346,7 +346,7 @@ const ProfilePage = () => {
                             value={form?.state || ""}
                             onChange={handleChange}
                             required
-                            disabled={!isEditing}
+                            // disabled={!isEditing}
                             className="border p-2 rounded w-full disabled:cursor-not-allowed"
                         />
                     </div>
@@ -358,7 +358,7 @@ const ProfilePage = () => {
                             value={form?.lat || ""}
                             onChange={handleChange}
 
-                            disabled={!isEditing}
+                            // disabled={!isEditing}
                             className="border p-2 rounded w-full disabled:cursor-not-allowed"
                         />
                     </div>
@@ -370,20 +370,20 @@ const ProfilePage = () => {
                             value={form?.lng || ""}
                             onChange={handleChange}
 
-                            disabled={!isEditing}
+                            // disabled={!isEditing}
                             className="border p-2 rounded w-full disabled:cursor-not-allowed hidden"
                         />
                     </div>
 
                     {/* Save Button */}
-                    {isEditing && (
-                        <button
-                            type="submit"
-                            className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
-                        >
-                            Save Changes
-                        </button>
-                    )}
+
+                    <button
+                        type="submit"
+                        className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
+                    >
+                        Save Changes
+                    </button>
+
                 </form>
             </div>
         </div>
