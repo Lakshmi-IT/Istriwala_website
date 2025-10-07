@@ -1,10 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Truck, Shield, Clock, DollarSign, ThumbsUp, IndianRupee } from 'lucide-react';
-import pickupImage from '../assets/pickupanddelivery.jpeg';
-import hygieneImage from '../assets/hygiene-process.jpeg';
-import deliveryImage from '../assets/on-time-delivery.png';
-import pricingImage from '../assets/affordable.jpeg';
-import satisfactionImage from '../assets/customer-satisfaction.jpeg';
+import pickupImage from '../assets/pickupanddelivery.webp';
+import hygieneImage from '../assets/hygiene-process.webp';
+import deliveryImage from '../assets/on-time-delivery.webp';
+import pricingImage from '../assets/affordable.webp';
+import satisfactionImage from '../assets/customer-satisfaction.webp';
 
 const Services = () => {
   const services = [

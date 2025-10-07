@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ShoppingCart, PlusCircle, Trash2, LocateIcon, MapPin, CreditCard, UserPlus } from "lucide-react";
-import laundry from "../assets/Laundry.png"
+import laundry from "../assets/Laundry.webp"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
